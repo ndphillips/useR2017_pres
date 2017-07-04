@@ -157,17 +157,29 @@ knitr::include_graphics(c("images/complexvsimple.png"))
 ```
 
 
+
+
+---&twocol
+###  Why an FFT?
+
+
+
 <!-- --- .quote .segue .nobackground -->
 
 
-<!-- <q>No more entities should be presumed to exist than are absolutely necessary</q> Willam of Occam -->
+<q>No more entities should be presumed to exist than are absolutely necessary</q> Willam of Occam
+
+
+---&twocol
+###  Why an FFT?
 
 
 
 <!-- --- .quote .segue .nobackground -->
 
 
-<!-- <q>If a decision tree that measures up very well on the performance criterion is nevertheless totally incomprehensible to a human expert, can it be described as *knowledge?* Under the common-sense definition of this term [...] it is not." </q> (p. 498, Quinlan, 1999) -->
+<q>If a decision tree that measures up very well on the performance criterion is nevertheless totally incomprehensible to a human expert, can it be described as *knowledge?* Under the common-sense definition of this term [...] it is not." </q> (Quinlan, 1999)
+
 
 
 ---
@@ -177,6 +189,9 @@ knitr::include_graphics(c("images/complexvsimple.png"))
 ```{r , fig.margin = TRUE, echo = FALSE, out.width = "100%", fig.align='center', message = FALSE, echo = FALSE}
 knitr::include_graphics(c("images/FFTexamples.png"))
 ```
+
+
+
 
 
 ---&twocol
@@ -307,13 +322,6 @@ plot(heart.fft)  # Training data
 
 ---
 
-```{r, fig.align = 'center', echo = TRUE, out.width = "55%"}
-plot(heart.fft, data = "test")   # Testing data
-```
-
-
----
-
 ```{r , fig.margin = TRUE, echo = FALSE, out.width = "80%", fig.align='center', message = FALSE, echo = FALSE}
  knitr::include_graphics(c("images/roc.png"))
 ```
@@ -342,7 +350,9 @@ plot(heart.fft, data = "test", tree = 7)   # Testing data, tree 7
 
 - The `FFTrees` package can be used with any dataset with a binary criterion.
 - Simulation: 10 diverse datasets taken from the UCI Machine Learning Database.
-- FFTrees vs. regression, Naive Bayes, Rnd For and more
+- 50\% Training, 50\% Testing.
+- Criterion: Balanced accuracy (mean(sensitivity, specificity))
+- FFTrees vs. rpart, regression, random forests...
 
 ### How well can a simple fast-and-frugal tree predict data?  
 
@@ -455,6 +465,8 @@ segments(mcu, pci, rep(7.5, length(data.name)), seq(.1, .9, length.out = length(
   axis(1, 1:7, labels = c("FFT", "CART", "NB", "LR", "RLR", "RF", "SVM"), lwd = 0, lwd.ticks = 1)
   axis(2, seq(.5, 1, .1), las =1)
 }
+abline(h = .865, lty = 2, lwd = 1.5)
+
 ```
 
 
@@ -498,7 +510,10 @@ segments(mcu, pci, rep(7.5, length(data.name)), seq(.1, .9, length.out = length(
   axis(1, 1:7, labels = c("FFT", "CART", "NB", "LR", "RLR", "RF", "SVM"), lwd = 0, lwd.ticks = 1)
   axis(2, seq(.5, 1, .1), las =1)
 }
+abline(h = .815, lty = 2, lwd = 1.5)
 ```
+
+
 
 --- .class #id 
 
@@ -641,21 +656,6 @@ heart.cost.fft <- FFTrees(formula = diagnosis ~.,
 ```{r, out.width = "100%", echo = FALSE}
 plot(heart.cost.fft)
 ```
-
-
----
-# Create a forest of FFTs
-
-```{r, eval = FALSE}
-heart.fff <- FFForest(formula = diagnosis ~., data = heartdisease)
-```
-
-
-```{r , fig.margin = TRUE, echo = FALSE, out.width = "90%", fig.align='center', fig.width = 10, fig.height = 6}
-#heart.fff <- FFForest(diagnosis ~., data = heartdisease)
-plot(heart.fff)
-```
-
 
 ---&twocol
 
@@ -1048,5 +1048,21 @@ plot(forest.fft, "test")
 ```{r out.width = "55%", echo = FALSE}
 plot(forest.fft, what = "cues")
 ```
+
+
+
+---
+# Create a forest of FFTs
+
+```{r, eval = FALSE}
+heart.fff <- FFForest(formula = diagnosis ~., data = heartdisease)
+```
+
+
+```{r , fig.margin = TRUE, echo = FALSE, out.width = "90%", fig.align='center', fig.width = 10, fig.height = 6}
+#heart.fff <- FFForest(diagnosis ~., data = heartdisease)
+plot(heart.fff)
+```
+
 
 
