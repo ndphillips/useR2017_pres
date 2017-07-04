@@ -182,12 +182,21 @@ knitr::include_graphics(c("images/FFTexamples.png"))
 
 ***=left
 
-- Problem: While there are many packages for creating non-frugal decision trees (like `rpart`), no such tool exists for fast-and-frugal trees.
 
-- Solution: `FFTrees` An easy-to-use R package to create, visualize, and evaluate fast-and-frugal decision trees.
+- `FFTrees` An easy-to-use R package to create, visualize, and evaluate fast-and-frugal decision trees.
 
-<br>
-<div style="text-align:left"><font size="1"> Phillips, N. D., Neth, H., Woike, J., & Gaissmaier, W. (in press). FFTrees: An R package to create, visualize, and evaluate fast-and-frugal decision trees. Judgment and Decision making</font></div>
+
+```{r, eval = FALSE}
+install.packages("FFTrees")
+library("FFTrees")
+    a      
+   / \     
+0   b  
+     / \   
+    0   1  
+ FFTrees v1.3.2
+```
+
 
 
 ***=right
@@ -197,14 +206,10 @@ knitr::include_graphics(c("images/FFTexamples.png"))
  knitr::include_graphics(c("images/FFTrees_Logo.jpg"))
 ```
 
-```{r, eval = FALSE}
-install.packages("FFTrees")
-```
-
 
 ---
 
-## Heart Disease Data
+## Example: Heart Disease
 
 ```{r, echo = FALSE, message = FALSE}
 library(FFTrees)
@@ -304,6 +309,12 @@ plot(heart.fft)  # Training data
 plot(heart.fft, data = "test")   # Testing data
 ```
 
+
+---
+
+```{r , fig.margin = TRUE, echo = FALSE, out.width = "80%", fig.align='center', message = FALSE, echo = FALSE}
+ knitr::include_graphics(c("images/roc.png"))
+```
 
 ---
 
@@ -565,6 +576,37 @@ heart.fff <- FFForest(formula = diagnosis ~., data = heartdisease)
 #heart.fff <- FFForest(diagnosis ~., data = heartdisease)
 plot(heart.fff)
 ```
+
+
+---&twocol
+
+## Conclusion
+
+***=left
+
+### Why use FFTrees?
+
+- See how, and how well, a crazy simple, transparent fast-and-frugal tree can make sense of your data.
+- You might be surprised by how well it works, and generate new insights.
+
+```{r, eval = FALSE}
+library("FFTrees")
+    a      
+   / \     
+0   b  
+     / \   
+    0   1  
+ FFTrees v1.3.2
+```
+
+***=right
+
+
+```{r, out.width = "80%", echo = FALSE}
+heart.fft <- FFTrees(diagnosis ~ ., data = heartdisease)
+plot(heart.fft)
+```
+
 
 
 ---&twocol
