@@ -17,9 +17,8 @@ knit        : slidify::knit2slides
 ---  .nobackground
 
 
-### Good decisions, limited information
+### Limited Time. Limited information. How can one make good decisions?
 
-<br>
 <br>
 
 
@@ -36,7 +35,7 @@ knit        : slidify::knit2slides
 
 
 
-### Cook County Hospital, 1996
+## Cook County Hospital, 1996
 
 ***=left
 <img src="images/crowdedemergency.jpg" title="plot of chunk unnamed-chunk-4" alt="plot of chunk unnamed-chunk-4" width="100%" style="display: block; margin: auto;" />
@@ -44,7 +43,7 @@ knit        : slidify::knit2slides
 ***=right
 
 
-"As the city’s principal public hospital, Cook County was the place of last resort for the hundreds of thousands of Chicagoans without health insurance. Resources were stretched to the limit. The hospital’s cavernous wards were built for another century. There were no private rooms, and patients were separated by flimsy plywood dividers. [...] (D)octors once trained a homeless man to do routine lab tests because there was no one else available." Malcolm Gladwell, Blink.
+"As the city’s principal public hospital, Cook County was the place of last resort for the hundreds of thousands of Chicagoans without health insurance. Resources were stretched to the limit. The hospital’s cavernous wards were built for another century. There were no private rooms, and patients were separated by flimsy plywood dividers. [\...] Doctors once trained a homeless man to do routine lab tests because there was no one else available." Malcolm Gladwell, Blink.
 
 
 
@@ -132,7 +131,7 @@ Green & Mehr (1997) "What alters physicians' decisions to admit to the coronary 
 
 ***=left
 
-- Problem: While there are many packages for creating non-frugal decision trees (like `rpart()`), no such tool exists for fast-and-frugal trees.
+- Problem: While there are many packages for creating non-frugal decision trees (like `rpart`), no such tool exists for fast-and-frugal trees.
 
 - Solution: `FFTrees` An easy-to-use R package to create, visualize, and evaluate fast-and-frugal decision trees.
 
@@ -144,6 +143,11 @@ Green & Mehr (1997) "What alters physicians' decisions to admit to the coronary 
 
 
 <img src="images/FFTrees_Logo.jpg" title="plot of chunk unnamed-chunk-10" alt="plot of chunk unnamed-chunk-10" width="80%" style="display: block; margin: auto;" />
+
+
+```r
+install.packages("FFTrees")
+```
 
 
 ---
@@ -194,38 +198,40 @@ heart.fft <- FFTrees(formula = diagnosis ~.,
 heart.fft
 ```
 
-```
-## Heart Disease
-## 7 FFTs predicting diagnosis (Low-Risk v High-Risk)
-## FFT #1 uses 3 cues: {thal,cp,ca}
-## 
-##                    train   test
-## cases       :n    150.00 153.00
-## speed       :mcu    1.74   1.73
-## frugality   :pci    0.88   0.88
-## accuracy    :acc    0.80   0.82
-## weighted    :wacc   0.80   0.82
-## sensitivity :sens   0.82   0.88
-## specificity :spec   0.79   0.76
-## 
-## pars: algorithm = 'ifan', goal = 'wacc', goal.chase = 'bacc', sens.w = 0.5, max.levels = 4
-```
 
+
+```r
+Heart Disease
+7 FFTs predicting diagnosis (Low-Risk v High-Risk)
+FFT #1 uses 3 cues: {thal,cp,ca}
+
+                   train   test
+cases       :n    150.00 153.00
+speed       :mcu    1.74   1.73
+frugality   :pci    0.88   0.88
+accuracy    :acc    0.80   0.82
+weighted    :wacc   0.80   0.82
+sensitivity :sens   0.82   0.88
+specificity :spec   0.79   0.76
+
+pars: algorithm = 'ifan', goal = 'wacc', goal.chase = 'bacc', sens.w = 0.5
+```
 
 ---
 ## Print a tree "in words"
 
 
 ```r
-inwords(heart.fft)[1]
+inwords(heart.fft)
 ```
 
+
+```r
+[1] "If thal = {rd,fd}, predict High-Risk"            
+[2] "If cp != {a}, predict Low-Risk"  
+[3] "If ca <= 0, predict Low-Risk, otherwise, if ca > 0, predict High-Risk"
 ```
-## $v1
-## [1] "If thal = {rd,fd}, predict High-Risk"                                 
-## [2] "If cp != {a}, predict Low-Risk"                                       
-## [3] "If ca <= 0, predict Low-Risk, otherwise, if ca > 0, predict High-Risk"
-```
+
 
 | cue| definition|Possible values |
 |:------|----:|:-----|
@@ -244,7 +250,7 @@ inwords(heart.fft)[1]
 plot(heart.fft, stats = FALSE)
 ```
 
-<img src="assets/fig/unnamed-chunk-15-1.png" title="plot of chunk unnamed-chunk-15" alt="plot of chunk unnamed-chunk-15" width="60%" style="display: block; margin: auto;" />
+<img src="figure/unnamed-chunk-18-1.png" title="plot of chunk unnamed-chunk-18" alt="plot of chunk unnamed-chunk-18" width="60%" style="display: block; margin: auto;" />
 
 
 ---
@@ -254,7 +260,7 @@ plot(heart.fft, stats = FALSE)
 plot(heart.fft)  # Training data
 ```
 
-<img src="assets/fig/unnamed-chunk-16-1.png" title="plot of chunk unnamed-chunk-16" alt="plot of chunk unnamed-chunk-16" width="55%" style="display: block; margin: auto;" />
+<img src="figure/unnamed-chunk-19-1.png" title="plot of chunk unnamed-chunk-19" alt="plot of chunk unnamed-chunk-19" width="55%" style="display: block; margin: auto;" />
 
 ---
 
@@ -263,7 +269,7 @@ plot(heart.fft)  # Training data
 plot(heart.fft, data = "test")   # Testing data
 ```
 
-<img src="assets/fig/unnamed-chunk-17-1.png" title="plot of chunk unnamed-chunk-17" alt="plot of chunk unnamed-chunk-17" width="55%" style="display: block; margin: auto;" />
+<img src="figure/unnamed-chunk-20-1.png" title="plot of chunk unnamed-chunk-20" alt="plot of chunk unnamed-chunk-20" width="55%" style="display: block; margin: auto;" />
 
 
 ---
@@ -273,7 +279,7 @@ plot(heart.fft, data = "test")   # Testing data
 plot(heart.fft, data = "test", tree = 6)   # Testing data, tree 6
 ```
 
-<img src="assets/fig/unnamed-chunk-18-1.png" title="plot of chunk unnamed-chunk-18" alt="plot of chunk unnamed-chunk-18" width="55%" style="display: block; margin: auto;" />
+<img src="figure/unnamed-chunk-21-1.png" title="plot of chunk unnamed-chunk-21" alt="plot of chunk unnamed-chunk-21" width="55%" style="display: block; margin: auto;" />
 
 
 ---
@@ -283,7 +289,7 @@ plot(heart.fft, data = "test", tree = 6)   # Testing data, tree 6
 plot(heart.fft, data = "test", tree = 7)   # Testing data, tree 7
 ```
 
-<img src="assets/fig/unnamed-chunk-19-1.png" title="plot of chunk unnamed-chunk-19" alt="plot of chunk unnamed-chunk-19" width="55%" style="display: block; margin: auto;" />
+<img src="figure/unnamed-chunk-22-1.png" title="plot of chunk unnamed-chunk-22" alt="plot of chunk unnamed-chunk-22" width="55%" style="display: block; margin: auto;" />
 
 
 
@@ -302,7 +308,7 @@ plot(heart.fft, data = "test", tree = 7)   # Testing data, tree 7
 
 ***=right
 
-<img src="images/datacollage.png" title="plot of chunk unnamed-chunk-20" alt="plot of chunk unnamed-chunk-20" width="90%" style="display: block; margin: auto;" />
+<img src="images/datacollage.png" title="plot of chunk unnamed-chunk-23" alt="plot of chunk unnamed-chunk-23" width="90%" style="display: block; margin: auto;" />
 
 
 
@@ -313,14 +319,14 @@ plot(heart.fft, data = "test", tree = 7)   # Testing data, tree 7
 ## Speed and frugality
 
 
-<img src="assets/fig/unnamed-chunk-21-1.png" title="plot of chunk unnamed-chunk-21" alt="plot of chunk unnamed-chunk-21" width="60%" style="display: block; margin: auto;" />
+<img src="figure/unnamed-chunk-24-1.png" title="plot of chunk unnamed-chunk-24" alt="plot of chunk unnamed-chunk-24" width="60%" style="display: block; margin: auto;" />
 
 
 --- .class #id 
 ## Speed and frugality
 
 
-<img src="assets/fig/unnamed-chunk-22-1.png" title="plot of chunk unnamed-chunk-22" alt="plot of chunk unnamed-chunk-22" width="60%" style="display: block; margin: auto;" />
+<img src="figure/unnamed-chunk-25-1.png" title="plot of chunk unnamed-chunk-25" alt="plot of chunk unnamed-chunk-25" width="60%" style="display: block; margin: auto;" />
 
 
 
@@ -329,29 +335,29 @@ plot(heart.fft, data = "test", tree = 7)   # Testing data, tree 7
 --- .class #id 
 ## Prediction accuracy across 10 datasets
 
-<img src="images/avgsim.jpg" title="plot of chunk unnamed-chunk-23" alt="plot of chunk unnamed-chunk-23" width="90%" style="display: block; margin: auto;" />
+<img src="images/avgsim.jpg" title="plot of chunk unnamed-chunk-26" alt="plot of chunk unnamed-chunk-26" width="90%" style="display: block; margin: auto;" />
 
 
 --- .class #id 
 
-<img src="images/MLR_Simulation_Trees.jpg" title="plot of chunk unnamed-chunk-24" alt="plot of chunk unnamed-chunk-24" width="72%" style="display: block; margin: auto;" />
+<img src="images/MLR_Simulation_Trees.jpg" title="plot of chunk unnamed-chunk-27" alt="plot of chunk unnamed-chunk-27" width="72%" style="display: block; margin: auto;" />
 
 
 
 ---
 ### Mushrooms
-<img src="assets/fig/unnamed-chunk-25-1.png" title="plot of chunk unnamed-chunk-25" alt="plot of chunk unnamed-chunk-25" width="55%" style="display: block; margin: auto;" />
+<img src="figure/unnamed-chunk-28-1.png" title="plot of chunk unnamed-chunk-28" alt="plot of chunk unnamed-chunk-28" width="55%" style="display: block; margin: auto;" />
 
 
 
 ---
 ### Breast Cancer
-<img src="assets/fig/unnamed-chunk-26-1.png" title="plot of chunk unnamed-chunk-26" alt="plot of chunk unnamed-chunk-26" width="55%" style="display: block; margin: auto;" />
+<img src="figure/unnamed-chunk-29-1.png" title="plot of chunk unnamed-chunk-29" alt="plot of chunk unnamed-chunk-29" width="55%" style="display: block; margin: auto;" />
 
 
 ---
 ### Titanic
-<img src="assets/fig/unnamed-chunk-27-1.png" title="plot of chunk unnamed-chunk-27" alt="plot of chunk unnamed-chunk-27" width="55%" style="display: block; margin: auto;" />
+<img src="figure/unnamed-chunk-30-1.png" title="plot of chunk unnamed-chunk-30" alt="plot of chunk unnamed-chunk-30" width="55%" style="display: block; margin: auto;" />
 
 
 
@@ -360,25 +366,33 @@ plot(heart.fft, data = "test", tree = 7)   # Testing data, tree 7
 
 ### Additional functions and arguments
 
-<img src="images/FFTrees_Tutorial_SS.png" title="plot of chunk unnamed-chunk-28" alt="plot of chunk unnamed-chunk-28" width="90%" style="display: block; margin: auto;" />
+<img src="images/FFTrees_Tutorial_SS.png" title="plot of chunk unnamed-chunk-31" alt="plot of chunk unnamed-chunk-31" width="90%" style="display: block; margin: auto;" />
 
 
 
 
----
-### Define a tree manually
+---&twocol
+
+***=left
+### Define an FFT manually
 
 
 ```r
 # Create an FFT manually
-my.heart.fft <- FFTrees(formula = diagnosis ~.,
-                        data = heart.train,
-                        my.tree = "If chol > 350, predict True. 
-                                   If cp != {a}, predict False. 
-                                   If age <= 35, predict False. Otherwise, predict True")
+FFTrees(formula = diagnosis ~.,
+data = heart.train,
+my.tree = "If chol > 350, predict True. 
+           If cp != {a}, predict False. 
+           If age <= 35, predict False.
+           Otherwise, predict True")
 ```
 
-<img src="assets/fig/unnamed-chunk-30-1.png" title="plot of chunk unnamed-chunk-30" alt="plot of chunk unnamed-chunk-30" width="30%" style="display: block; margin: auto;" />
+
+
+
+***=right
+
+<img src="figure/unnamed-chunk-34-1.png" title="plot of chunk unnamed-chunk-34" alt="plot of chunk unnamed-chunk-34" width="100%" style="display: block; margin: auto;" />
 
 
 ---&twocol
@@ -387,29 +401,61 @@ my.heart.fft <- FFTrees(formula = diagnosis ~.,
 ***=left
 `heart.cost`
 
-|cue      | cost|
-|:--------|----:|
-|age      | 1.00|
-|sex      | 1.00|
-|cp       | 1.00|
-|trestbps | 1.00|
-|chol     | 7.27|
-|fbs      | 5.20|
+|   |cue      |  cost|
+|:--|:--------|-----:|
+|2  |sex      |   1.0|
+|13 |thal     | 102.9|
+|3  |cp       |   1.0|
+|12 |ca       | 100.9|
+|4  |trestbps |   1.0|
+
+
+```r
+# Original FFT (without costs)
+FFTrees(formula = diagnosis ~.,
+ data = heart.train)
+```
+
 
 ***=right
+
+### Original FFT (without costs)
+
+<img src="figure/unnamed-chunk-37-1.png" title="plot of chunk unnamed-chunk-37" alt="plot of chunk unnamed-chunk-37" width="100%" style="display: block; margin: auto;" />
+
+
+---&twocol
+### Include cue costs
+
+***=left
+`heart.cost`
+
+|   |cue      |  cost|
+|:--|:--------|-----:|
+|2  |sex      |   1.0|
+|13 |thal     | 102.9|
+|3  |cp       |   1.0|
+|12 |ca       | 100.9|
+|4  |trestbps |   1.0|
 
 
 ```r
 # Create an FFT that is cheap
 FFTrees(formula = diagnosis ~.,
-        data = heart.train,
-        cost.cues = heart.cost,
-        cost.outcomes = c(0, 200, 100, 0),
-        goal = "cost",
-        goal.chase = "cost")
+ data = heart.train,
+ cost.cues = heart.cost,
+ cost.outcomes = c(0, 200, 100, 0))
 ```
 
 
+***=right
+
+
+
+### Cheap FFT
+
+
+<img src="figure/unnamed-chunk-41-1.png" title="plot of chunk unnamed-chunk-41" alt="plot of chunk unnamed-chunk-41" width="100%" style="display: block; margin: auto;" />
 
 
 ---
@@ -421,7 +467,7 @@ heart.fff <- FFForest(formula = diagnosis ~., data = heartdisease)
 ```
 
 
-<img src="assets/fig/unnamed-chunk-34-1.png" title="plot of chunk unnamed-chunk-34" alt="plot of chunk unnamed-chunk-34" width="90%" style="display: block; margin: auto;" />
+<img src="figure/unnamed-chunk-43-1.png" title="plot of chunk unnamed-chunk-43" alt="plot of chunk unnamed-chunk-43" width="90%" style="display: block; margin: auto;" />
 
 
 ---&twocol
@@ -441,7 +487,7 @@ Phillips, Nathaniel D., Neth, Hansjoerg, Woike, Jan & Gaissmeier, Wolfgang. (201
 
 ***=right
 
-<img src="images/collaborators.png" title="plot of chunk unnamed-chunk-35" alt="plot of chunk unnamed-chunk-35" width="90%" style="display: block; margin: auto;" />
+<img src="images/collaborators.png" title="plot of chunk unnamed-chunk-44" alt="plot of chunk unnamed-chunk-44" width="90%" style="display: block; margin: auto;" />
 
 
 
@@ -472,7 +518,7 @@ Phillips, Nathaniel D., Neth, Hansjoerg, Woike, Jan & Gaissmeier, Wolfgang. (201
 
 - Many cues, weak validity, ind errors
 
-<img src="assets/fig/unnamed-chunk-36-1.png" title="plot of chunk unnamed-chunk-36" alt="plot of chunk unnamed-chunk-36" width="100%" style="display: block; margin: auto;" />
+<img src="figure/unnamed-chunk-45-1.png" title="plot of chunk unnamed-chunk-45" alt="plot of chunk unnamed-chunk-45" width="100%" style="display: block; margin: auto;" />
 
 
 ***=right
@@ -481,7 +527,7 @@ Phillips, Nathaniel D., Neth, Hansjoerg, Woike, Jan & Gaissmeier, Wolfgang. (201
 
 - Few cues with high validity, dep errors.
 
-<img src="assets/fig/unnamed-chunk-37-1.png" title="plot of chunk unnamed-chunk-37" alt="plot of chunk unnamed-chunk-37" width="100%" style="display: block; margin: auto;" />
+<img src="figure/unnamed-chunk-46-1.png" title="plot of chunk unnamed-chunk-46" alt="plot of chunk unnamed-chunk-46" width="100%" style="display: block; margin: auto;" />
 
 
 
@@ -502,10 +548,10 @@ Phillips, Nathaniel D., Neth, Hansjoerg, Woike, Jan & Gaissmeier, Wolfgang. (201
 
 ***=right
 
-<img src="assets/fig/unnamed-chunk-38-1.png" title="plot of chunk unnamed-chunk-38" alt="plot of chunk unnamed-chunk-38" width="80%" style="display: block; margin: auto;" />
+<img src="figure/unnamed-chunk-47-1.png" title="plot of chunk unnamed-chunk-47" alt="plot of chunk unnamed-chunk-47" width="80%" style="display: block; margin: auto;" />
 
 
-<img src="images/roc.jpg" title="plot of chunk unnamed-chunk-39" alt="plot of chunk unnamed-chunk-39" width="70%" style="display: block; margin: auto;" />
+<img src="images/roc.jpg" title="plot of chunk unnamed-chunk-48" alt="plot of chunk unnamed-chunk-48" width="70%" style="display: block; margin: auto;" />
 
 
 
@@ -516,7 +562,7 @@ Phillips, Nathaniel D., Neth, Hansjoerg, Woike, Jan & Gaissmeier, Wolfgang. (201
 plot(heart.fft, what = "cues")
 ```
 
-<img src="assets/fig/unnamed-chunk-40-1.png" title="plot of chunk unnamed-chunk-40" alt="plot of chunk unnamed-chunk-40" width="60%" style="display: block; margin: auto;" />
+<img src="figure/unnamed-chunk-49-1.png" title="plot of chunk unnamed-chunk-49" alt="plot of chunk unnamed-chunk-49" width="60%" style="display: block; margin: auto;" />
 
 
 
@@ -524,7 +570,7 @@ plot(heart.fft, what = "cues")
 
 ### When should I consider an FFT?
 
-<img src="images/considerFFT.jpg" title="plot of chunk unnamed-chunk-41" alt="plot of chunk unnamed-chunk-41" width="70%" style="display: block; margin: auto;" />
+<img src="images/considerFFT.jpg" title="plot of chunk unnamed-chunk-50" alt="plot of chunk unnamed-chunk-50" width="70%" style="display: block; margin: auto;" />
 
 
 
@@ -535,7 +581,7 @@ plot(heart.fft, what = "cues")
 
 
 
-<img src="assets/fig/unnamed-chunk-42-1.png" title="plot of chunk unnamed-chunk-42" alt="plot of chunk unnamed-chunk-42" width="90%" style="display: block; margin: auto;" />
+<img src="figure/unnamed-chunk-51-1.png" title="plot of chunk unnamed-chunk-51" alt="plot of chunk unnamed-chunk-51" width="90%" style="display: block; margin: auto;" />
 
 
 --- .class #id 
@@ -544,7 +590,7 @@ plot(heart.fft, what = "cues")
 
 
 
-<img src="assets/fig/unnamed-chunk-43-1.png" title="plot of chunk unnamed-chunk-43" alt="plot of chunk unnamed-chunk-43" width="90%" style="display: block; margin: auto;" />
+<img src="figure/unnamed-chunk-52-1.png" title="plot of chunk unnamed-chunk-52" alt="plot of chunk unnamed-chunk-52" width="90%" style="display: block; margin: auto;" />
 
 
 
@@ -557,7 +603,7 @@ plot(heart.fft, what = "cues")
 
 
 
-<img src="assets/fig/unnamed-chunk-44-1.png" title="plot of chunk unnamed-chunk-44" alt="plot of chunk unnamed-chunk-44" width="90%" style="display: block; margin: auto;" />
+<img src="figure/unnamed-chunk-53-1.png" title="plot of chunk unnamed-chunk-53" alt="plot of chunk unnamed-chunk-53" width="90%" style="display: block; margin: auto;" />
 
 
 
@@ -566,7 +612,7 @@ plot(heart.fft, what = "cues")
 
 
 
-<img src="assets/fig/unnamed-chunk-45-1.png" title="plot of chunk unnamed-chunk-45" alt="plot of chunk unnamed-chunk-45" width="90%" style="display: block; margin: auto;" />
+<img src="figure/unnamed-chunk-54-1.png" title="plot of chunk unnamed-chunk-54" alt="plot of chunk unnamed-chunk-54" width="90%" style="display: block; margin: auto;" />
 
 
 
@@ -576,18 +622,24 @@ plot(heart.fft, what = "cues")
 
 
 
-<img src="assets/fig/unnamed-chunk-46-1.png" title="plot of chunk unnamed-chunk-46" alt="plot of chunk unnamed-chunk-46" width="90%" style="display: block; margin: auto;" />
+<img src="figure/unnamed-chunk-55-1.png" title="plot of chunk unnamed-chunk-55" alt="plot of chunk unnamed-chunk-55" width="90%" style="display: block; margin: auto;" />
 
 
 
 ---
 ### Forest Fires (Training)
 
-<img src="assets/fig/unnamed-chunk-47-1.png" title="plot of chunk unnamed-chunk-47" alt="plot of chunk unnamed-chunk-47" width="55%" style="display: block; margin: auto;" />
+<img src="figure/unnamed-chunk-56-1.png" title="plot of chunk unnamed-chunk-56" alt="plot of chunk unnamed-chunk-56" width="55%" style="display: block; margin: auto;" />
 
 ---
 ### Forest Fires (Testing)
 
-<img src="assets/fig/unnamed-chunk-48-1.png" title="plot of chunk unnamed-chunk-48" alt="plot of chunk unnamed-chunk-48" width="55%" style="display: block; margin: auto;" />
+<img src="figure/unnamed-chunk-57-1.png" title="plot of chunk unnamed-chunk-57" alt="plot of chunk unnamed-chunk-57" width="55%" style="display: block; margin: auto;" />
+
+
+---
+### Forest Fires (Testing)
+
+<img src="figure/unnamed-chunk-58-1.png" title="plot of chunk unnamed-chunk-58" alt="plot of chunk unnamed-chunk-58" width="55%" style="display: block; margin: auto;" />
 
 

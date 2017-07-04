@@ -17,9 +17,8 @@ knit        : slidify::knit2slides
 ---  .nobackground
 
 
-### Good decisions, limited information
+### Limited Time. Limited information. How can one make good decisions?
 
-<br>
 <br>
 
 
@@ -74,7 +73,7 @@ cart.loc <- c(27, 72)
 ```
 
 
-### Cook County Hospital, 1996
+## Cook County Hospital, 1996
 
 ***=left
 ```{r, fig.margin = TRUE, echo = FALSE, eval = TRUE, out.width = "100%", fig.align='center'}
@@ -84,7 +83,7 @@ knitr::include_graphics(c("images/crowdedemergency.jpg"))
 ***=right
 
 
-"As the city’s principal public hospital, Cook County was the place of last resort for the hundreds of thousands of Chicagoans without health insurance. Resources were stretched to the limit. The hospital’s cavernous wards were built for another century. There were no private rooms, and patients were separated by flimsy plywood dividers. [...] (D)octors once trained a homeless man to do routine lab tests because there was no one else available." Malcolm Gladwell, Blink.
+"As the city’s principal public hospital, Cook County was the place of last resort for the hundreds of thousands of Chicagoans without health insurance. Resources were stretched to the limit. The hospital’s cavernous wards were built for another century. There were no private rooms, and patients were separated by flimsy plywood dividers. [\...] Doctors once trained a homeless man to do routine lab tests because there was no one else available." Malcolm Gladwell, Blink.
 
 
 
@@ -183,7 +182,7 @@ knitr::include_graphics(c("images/FFTexamples.png"))
 
 ***=left
 
-- Problem: While there are many packages for creating non-frugal decision trees (like `rpart()`), no such tool exists for fast-and-frugal trees.
+- Problem: While there are many packages for creating non-frugal decision trees (like `rpart`), no such tool exists for fast-and-frugal trees.
 
 - Solution: `FFTrees` An easy-to-use R package to create, visualize, and evaluate fast-and-frugal decision trees.
 
@@ -196,6 +195,10 @@ knitr::include_graphics(c("images/FFTexamples.png"))
 
 ```{r , fig.margin = TRUE, echo = FALSE, out.width = "80%", fig.align='center', message = FALSE, echo = FALSE}
  knitr::include_graphics(c("images/FFTrees_Logo.jpg"))
+```
+
+```{r, eval = FALSE}
+install.packages("FFTrees")
 ```
 
 
@@ -236,17 +239,41 @@ heart.fft <- FFTrees(formula = diagnosis ~.,
 
 ## Print an `FFTrees` object
 
-```{r, fig.align = 'center', echo = TRUE, out.width = "60%"}
+```{r, fig.align = 'center', echo = TRUE, out.width = "60%", eval = FALSE}
 heart.fft
 ```
 
 
+```{r, eval = FALSE}
+Heart Disease
+7 FFTs predicting diagnosis (Low-Risk v High-Risk)
+FFT #1 uses 3 cues: {thal,cp,ca}
+
+                   train   test
+cases       :n    150.00 153.00
+speed       :mcu    1.74   1.73
+frugality   :pci    0.88   0.88
+accuracy    :acc    0.80   0.82
+weighted    :wacc   0.80   0.82
+sensitivity :sens   0.82   0.88
+specificity :spec   0.79   0.76
+
+pars: algorithm = 'ifan', goal = 'wacc', goal.chase = 'bacc', sens.w = 0.5
+```
+
 ---
 ## Print a tree "in words"
 
-```{r, fig.align = 'center', echo = TRUE, out.width = "60%"}
-inwords(heart.fft)[1]
+```{r, fig.align = 'center', echo = TRUE, out.width = "60%", eval = FALSE}
+inwords(heart.fft)
 ```
+
+```{r, eval = FALSE}
+[1] "If thal = {rd,fd}, predict High-Risk"            
+[2] "If cp != {a}, predict Low-Risk"  
+[3] "If ca <= 0, predict Low-Risk, otherwise, if ca > 0, predict High-Risk"
+```
+
 
 | cue| definition|Possible values |
 |:------|----:|:-----|
@@ -428,20 +455,36 @@ knitr::include_graphics(c("images/FFTrees_Tutorial_SS.png"))
 
 
 
----
-### Define a tree manually
+---&twocol
 
-```{r, eval = TRUE, message = FALSE}
+***=left
+### Define an FFT manually
+
+```{r, eval = FALSE, message = FALSE}
 # Create an FFT manually
-my.heart.fft <- FFTrees(formula = diagnosis ~.,
-                        data = heart.train,
-                        my.tree = "If chol > 350, predict True. 
-                                   If cp != {a}, predict False. 
-                                   If age <= 35, predict False. Otherwise, predict True")
+FFTrees(formula = diagnosis ~.,
+data = heart.train,
+my.tree = "If chol > 350, predict True. 
+           If cp != {a}, predict False. 
+           If age <= 35, predict False.
+           Otherwise, predict True")
 ```
 
-```{r, out.width = "30%", echo = FALSE}
-plot(my.heart.fft, stats = FALSE)
+
+```{r, echo = FALSE}
+# Create an FFT manually
+my.heart.fft <- FFTrees(formula = diagnosis ~.,
+        data = heart.train,
+        my.tree = "If chol > 350, predict True. 
+                   If cp != {a}, predict False. 
+                   If age <= 35, predict False.
+                   Otherwise, predict True")
+```
+
+***=right
+
+```{r, out.width = "100%", echo = FALSE}
+plot(my.heart.fft, stats = TRUE)
 ```
 
 
@@ -451,22 +494,63 @@ plot(my.heart.fft, stats = FALSE)
 ***=left
 `heart.cost`
 ```{r, echo = FALSE}
-knitr::kable(head(heart.cost))
+knitr::kable(heart.cost[c(2, 13, 3, 12, 4),])
 ```
+
+```{r, eval = FALSE}
+# Original FFT (without costs)
+FFTrees(formula = diagnosis ~.,
+ data = heart.train)
+```
+
 
 ***=right
 
-```{r, eval = FALSE, message = FALSE}
+### Original FFT (without costs)
+
+```{r, out.width = "100%", echo = FALSE}
+plot(heart.fft)
+```
+
+
+---&twocol
+### Include cue costs
+
+***=left
+`heart.cost`
+```{r, echo = FALSE}
+knitr::kable(heart.cost[c(2, 13, 3, 12, 4),])
+```
+
+```{r, eval = FALSE}
 # Create an FFT that is cheap
 FFTrees(formula = diagnosis ~.,
+ data = heart.train,
+ cost.cues = heart.cost,
+ cost.outcomes = c(0, 200, 100, 0))
+```
+
+
+***=right
+
+```{r, eval = TRUE, message = FALSE, echo = FALSE}
+# Create an FFT that is cheap
+heart.cost.fft <- FFTrees(formula = diagnosis ~.,
         data = heart.train,
         cost.cues = heart.cost,
         cost.outcomes = c(0, 200, 100, 0),
         goal = "cost",
-        goal.chase = "cost")
+        goal.chase = "cost",
+        main = "Heart w/ Cost",
+        decision.labels = c("Standard", "ICU"))
 ```
 
+### Cheap FFT
 
+
+```{r, out.width = "100%", echo = FALSE}
+plot(heart.cost.fft)
+```
 
 
 ---
@@ -834,6 +918,14 @@ plot(forest.fft, "train")
 
 ```{r out.width = "55%", echo = FALSE}
 plot(forest.fft, "test")
+```
+
+
+---
+### Forest Fires (Testing)
+
+```{r out.width = "55%", echo = FALSE}
+plot(forest.fft, what = "cues")
 ```
 
 
