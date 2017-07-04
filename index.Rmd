@@ -37,6 +37,8 @@ library(FFTrees)
 load("data/UZurich.RData")
 load("data/useR.RData")
 load("data/heartfff.RData")
+load("data/FFTrees_mlr_df.RData")
+
 knitr::opts_chunk$set(echo = TRUE, dpi = 400, fig.align='center', message = FALSE)
 
 ```
@@ -414,12 +416,89 @@ segments(mcu, pci, rep(7.5, length(data.name)), seq(.1, .9, length.out = length(
 
 
 --- .class #id 
-## Prediction accuracy across 10 datasets
+## Training (balanced) accuracy (10 datasets)
 
-```{r , fig.margin = TRUE, echo = FALSE, out.width = "90%", fig.align='center'}
-knitr::include_graphics(c("images/avgsim.jpg"))
+```{r , fig.margin = TRUE, echo = FALSE, out.width = "80%", fig.align='center', fig.width = 8, fig.height = 6}
+{
+  
+  data <- subset(FFTrees.mlr.df, 
+                 ((algorithm == "SVM" & 
+                     task.id %in% c("arrhythmia", "audiology")) == FALSE &
+                    algorithm %in% c("FFTi", "CART", "NB", "LR", "RLR", "RF", "SVM")))
+  
+  data <- rbind(subset(data, algorithm == "FFTi"),
+                subset(data, algorithm == "CART"),
+                subset(data, algorithm == "NB"),
+                subset(data, algorithm == "LR"),
+                subset(data, algorithm == "RLR"),
+                subset(data, algorithm == "RF"),
+                subset(data, algorithm == "SVM")
+  )
+  
+  par(mar = c(5, 5, 4, 1) + .1)
+  yarrr::pirateplot(bac.train ~ algorithm, 
+                    data = data, 
+                    inf.f.o = 0,
+                    inf.b.o = 0,
+                    avg.line.lwd = 3,
+                    sortx = "sequential",
+                    ylim = c(.5, 1), gl = seq(.5, 1, .1), 
+                    yaxt = "n", xaxt = "n", xlab = "Algorithm",
+                    point.cex = .2, ylab = "", 
+                    quant = c(.25, .75), 
+                    quant.col = gray(.5), 
+                    quant.lwd = 1)
+  
+  mtext("bacc", side = 2, line = 3.5)
+  mtext("training", side = 2, line = 2.75, cex = .8)
+  
+  axis(1, 1:7, labels = c("FFT", "CART", "NB", "LR", "RLR", "RF", "SVM"), lwd = 0, lwd.ticks = 1)
+  axis(2, seq(.5, 1, .1), las =1)
+}
 ```
 
+
+--- .class #id 
+## Testing (balanced) accuracy (10 datasets)
+
+```{r , fig.margin = TRUE, echo = FALSE, out.width = "80%", fig.align='center', fig.width = 8, fig.height = 6}
+{
+  
+  data <- subset(FFTrees.mlr.df, 
+                 ((algorithm == "SVM" & 
+                     task.id %in% c("arrhythmia", "audiology")) == FALSE &
+                    algorithm %in% c("FFTi", "CART", "NB", "LR", "RLR", "RF", "SVM")))
+  
+  data <- rbind(subset(data, algorithm == "FFTi"),
+                subset(data, algorithm == "CART"),
+                subset(data, algorithm == "NB"),
+                subset(data, algorithm == "LR"),
+                subset(data, algorithm == "RLR"),
+                subset(data, algorithm == "RF"),
+                subset(data, algorithm == "SVM")
+  )
+  
+  par(mar = c(5, 5, 4, 1) + .1)
+  yarrr::pirateplot(bac.test ~ algorithm, 
+                    data = data, 
+                    inf.f.o = 0,
+                    inf.b.o = 0,
+                    avg.line.lwd = 3,
+                    sortx = "sequential",
+                    ylim = c(.5, 1), gl = seq(.5, 1, .1), 
+                    yaxt = "n", xaxt = "n", xlab = "Algorithm",
+                    point.cex = .2, ylab = "", 
+                    quant = c(.25, .75), 
+                    quant.col = gray(.5), 
+                    quant.lwd = 1)
+  
+  mtext("bacc", side = 2, line = 3.5)
+  mtext("testing", side = 2, line = 2.75, cex = .8)
+  
+  axis(1, 1:7, labels = c("FFT", "CART", "NB", "LR", "RLR", "RF", "SVM"), lwd = 0, lwd.ticks = 1)
+  axis(2, seq(.5, 1, .1), las =1)
+}
+```
 
 --- .class #id 
 
