@@ -157,31 +157,6 @@ knitr::include_graphics(c("images/complexvsimple.png"))
 ```
 
 
-
-
----&twocol
-###  Why an FFT?
-
-
-
-<!-- --- .quote .segue .nobackground -->
-
-
-<q>No more entities should be presumed to exist than are absolutely necessary</q> Willam of Occam
-
-
----&twocol
-###  Why an FFT?
-
-
-
-<!-- --- .quote .segue .nobackground -->
-
-
-<q>If a decision tree that measures up very well on the performance criterion is nevertheless totally incomprehensible to a human expert, can it be described as *knowledge?* Under the common-sense definition of this term [...] it is not." </q> (Quinlan, 1999)
-
-
-
 ---
 # Examples of FFTs
 
@@ -189,6 +164,31 @@ knitr::include_graphics(c("images/complexvsimple.png"))
 ```{r , fig.margin = TRUE, echo = FALSE, out.width = "100%", fig.align='center', message = FALSE, echo = FALSE}
 knitr::include_graphics(c("images/FFTexamples.png"))
 ```
+
+
+
+
+
+---&twocol
+###  Why an FFT?
+
+
+<q>No more entities should be presumed to exist than are absolutely necessary</q> Willam of Occam
+
+
+
+```{r , fig.margin = TRUE, echo = FALSE, out.width = "50%", fig.align='center', message = FALSE, echo = FALSE}
+ knitr::include_graphics(c("images/occam.jpg"))
+```
+
+<!-- ---&twocol -->
+<!-- ###  Why an FFT? -->
+
+
+
+
+
+<!-- <q>If a decision tree that measures up very well on the performance criterion is nevertheless totally incomprehensible to a human expert, can it be described as *knowledge?* Under the common-sense definition of this term [...] it is not." </q> (Quinlan, 1999) -->
 
 
 
@@ -346,15 +346,15 @@ plot(heart.fft, data = "test", tree = 7)   # Testing data, tree 7
 
 ***=left
 
-## Generalizing FFTrees
+## Prediction Simulation
 
 - The `FFTrees` package can be used with any dataset with a binary criterion.
-- Simulation: 10 diverse datasets taken from the UCI Machine Learning Database.
-- 50\% Training, 50\% Testing.
-- Criterion: Balanced accuracy (mean(sensitivity, specificity))
-- FFTrees vs. rpart, regression, random forests...
-
-### How well can a simple fast-and-frugal tree predict data?  
+- Simulation
+    - 10 diverse datasets taken from the UCI Machine Learning Database.
+    - 50\% Training, 50\% Testing (results very similar for 10-fold cross validation)
+    - FFtrees vs rpart, regression, random forests...
+- Criterion: Balanced accuracy
+    - (mean(sensitivity, specificity))
 
 ***=right
 
@@ -426,7 +426,7 @@ segments(mcu, pci, rep(7.5, length(data.name)), seq(.1, .9, length.out = length(
 
 
 --- .class #id 
-## Training (balanced) accuracy (10 datasets)
+## Training (all datasets)
 
 ```{r , fig.margin = TRUE, echo = FALSE, out.width = "80%", fig.align='center', fig.width = 8, fig.height = 6}
 {
@@ -471,7 +471,7 @@ abline(h = .865, lty = 2, lwd = 1.5)
 
 
 --- .class #id 
-## Testing (balanced) accuracy (10 datasets)
+## Testing (all datasets)
 
 ```{r , fig.margin = TRUE, echo = FALSE, out.width = "80%", fig.align='center', fig.width = 8, fig.height = 6}
 {
@@ -547,16 +547,23 @@ plot(titanic.fft)
 ```
 
 
-
-
 ---
 
-### Additional functions and arguments
+### Additional features
 
 ```{r, fig.margin = TRUE, echo = FALSE, eval = TRUE, out.width = "90%", fig.align='center'}
 knitr::include_graphics(c("images/FFTrees_Tutorial_SS.png"))
 ```
 
+
+
+
+
+---
+
+```{r, fig.align = 'center', echo = TRUE, out.width = "60%"}
+plot(heart.fft, what = "cues")
+```
 
 
 
@@ -599,7 +606,7 @@ plot(my.heart.fft, stats = TRUE)
 ***=left
 `heart.cost`
 ```{r, echo = FALSE}
-knitr::kable(heart.cost[c(2, 13, 3, 12, 4),])
+knitr::kable(heart.cost[c(13, 3, 12, 4),], row.names = FALSE)
 ```
 
 ```{r, eval = FALSE}
@@ -657,33 +664,18 @@ heart.cost.fft <- FFTrees(formula = diagnosis ~.,
 plot(heart.cost.fft)
 ```
 
----&twocol
 
-## Conclusion
+---
 
-***=left
-
-### Why use FFTrees?
-
-- See how, and how well, a crazy simple, transparent fast-and-frugal tree can make sense of your data.
-- You might be surprised by how well it works, and generate new insights.
-
-```{r, eval = FALSE}
-library("FFTrees")
-    a      
-   / \     
-0   b  
-     / \   
-    0   1  
- FFTrees v1.3.2
-```
-
-***=right
+### When should I consider an FFT?
 
 
-```{r, out.width = "80%", echo = FALSE}
-heart.fft <- FFTrees(diagnosis ~ ., data = heartdisease)
-plot(heart.fft)
+---
+
+### When should I consider an FFT?
+
+```{r , fig.margin = TRUE, echo = FALSE, out.width = "70%", fig.align='center'}
+knitr::include_graphics(c("images/considerFFT.jpg"))
 ```
 
 
@@ -695,7 +687,7 @@ plot(heart.fft)
 
 ### Publication
 
-Phillips, Nathaniel D., Neth, Hansjoerg, Woike, Jan & Gaissmeier, Wolfgang. (2017). FFTrees: A toolbox to create, visualize and evaluate fast-and-frugal decision trees. *Judgment and Decision Making*.
+FFTrees: A toolbox to create, visualize and evaluate fast-and-frugal decision trees. *Judgment and Decision Making*.
 
 ### Collaborators
 
@@ -877,23 +869,6 @@ knitr::include_graphics(c("images/roc.jpg"))
 
 
 
----
-
-```{r, fig.align = 'center', echo = TRUE, out.width = "60%"}
-plot(heart.fft, what = "cues")
-```
-
-
-
----
-
-### When should I consider an FFT?
-
-```{r , fig.margin = TRUE, echo = FALSE, out.width = "70%", fig.align='center'}
-knitr::include_graphics(c("images/considerFFT.jpg"))
-```
-
-
 
 
 
@@ -1047,6 +1022,39 @@ plot(forest.fft, "test")
 
 ```{r out.width = "55%", echo = FALSE}
 plot(forest.fft, what = "cues")
+```
+
+
+
+
+
+---&twocol
+
+## Conclusion
+
+***=left
+
+### Why use FFTrees?
+
+- See how, and how well, a crazy simple, transparent fast-and-frugal tree can make sense of your data.
+- You might be surprised by how well it works, and generate new insights.
+
+```{r, eval = FALSE}
+library("FFTrees")
+    a      
+   / \     
+0   b  
+     / \   
+    0   1  
+ FFTrees v1.3.2
+```
+
+***=right
+
+
+```{r, out.width = "80%", echo = FALSE}
+heart.fft <- FFTrees(diagnosis ~ ., data = heartdisease)
+plot(heart.fft)
 ```
 
 

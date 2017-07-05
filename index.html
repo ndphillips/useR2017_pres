@@ -169,19 +169,11 @@
 
 <slide class="" id="slide-7" style="background:;">
   <hgroup>
-    <h3>Why an FFT?</h3>
+    <h1>Examples of FFTs</h1>
   </hgroup>
   <article data-timings="">
-    <!-- --- .quote .segue .nobackground -->
+    <p><img src="images/FFTexamples.png" title="plot of chunk unnamed-chunk-9" alt="plot of chunk unnamed-chunk-9" width="100%" style="display: block; margin: auto;" /></p>
 
-<p><q>No more entities should be presumed to exist than are absolutely necessary</q> Willam of Occam</p>
-
-<div style='float:left;width:48%;' class='centered'>
-  
-</div>
-<div style='float:right;width:48%;'>
-  
-</div>
   </article>
   <!-- Presenter Notes -->
 </slide>
@@ -191,9 +183,15 @@
     <h3>Why an FFT?</h3>
   </hgroup>
   <article data-timings="">
-    <!-- --- .quote .segue .nobackground -->
+    <p><q>No more entities should be presumed to exist than are absolutely necessary</q> Willam of Occam</p>
 
-<p><q>If a decision tree that measures up very well on the performance criterion is nevertheless totally incomprehensible to a human expert, can it be described as <em>knowledge?</em> Under the common-sense definition of this term [...] it is not.&quot; </q> (Quinlan, 1999)</p>
+<p><img src="images/occam.jpg" title="plot of chunk unnamed-chunk-10" alt="plot of chunk unnamed-chunk-10" width="50%" style="display: block; margin: auto;" /></p>
+
+<!-- ---&twocol -->
+
+<!-- ###  Why an FFT? -->
+
+<!-- <q>If a decision tree that measures up very well on the performance criterion is nevertheless totally incomprehensible to a human expert, can it be described as *knowledge?* Under the common-sense definition of this term [...] it is not." </q> (Quinlan, 1999) -->
 
 <div style='float:left;width:48%;' class='centered'>
   
@@ -206,17 +204,6 @@
 </slide>
 
 <slide class="" id="slide-9" style="background:;">
-  <hgroup>
-    <h1>Examples of FFTs</h1>
-  </hgroup>
-  <article data-timings="">
-    <p><img src="images/FFTexamples.png" title="plot of chunk unnamed-chunk-9" alt="plot of chunk unnamed-chunk-9" width="100%" style="display: block; margin: auto;" /></p>
-
-  </article>
-  <!-- Presenter Notes -->
-</slide>
-
-<slide class="" id="slide-10" style="background:;">
   <hgroup>
     <h2>FFTrees</h2>
   </hgroup>
@@ -239,14 +226,14 @@ library(&quot;FFTrees&quot;)
 
 </div>
 <div style='float:right;width:48%;'>
-  <p><img src="images/FFTrees_Logo.jpg" title="plot of chunk unnamed-chunk-11" alt="plot of chunk unnamed-chunk-11" width="80%" style="display: block; margin: auto;" /></p>
+  <p><img src="images/FFTrees_Logo.jpg" title="plot of chunk unnamed-chunk-12" alt="plot of chunk unnamed-chunk-12" width="80%" style="display: block; margin: auto;" /></p>
 
 </div>
   </article>
   <!-- Presenter Notes -->
 </slide>
 
-<slide class="" id="slide-11" style="background:;">
+<slide class="" id="slide-10" style="background:;">
   <hgroup>
     <h2>Example: Heart Disease</h2>
   </hgroup>
@@ -376,7 +363,7 @@ library(&quot;FFTrees&quot;)
   <!-- Presenter Notes -->
 </slide>
 
-<slide class="" id="slide-12" style="background:;">
+<slide class="" id="slide-11" style="background:;">
   <hgroup>
     <h2>3 Steps to creating FFTs with FFTrees</h2>
   </hgroup>
@@ -399,7 +386,7 @@ heart.fft &lt;- FFTrees(formula = diagnosis ~.,
   <!-- Presenter Notes -->
 </slide>
 
-<slide class="" id="slide-13" style="background:;">
+<slide class="" id="slide-12" style="background:;">
   <hgroup>
     <h2>Print an <code>FFTrees</code> object</h2>
   </hgroup>
@@ -427,7 +414,7 @@ pars: algorithm = &#39;ifan&#39;, goal = &#39;wacc&#39;, goal.chase = &#39;bacc&
   <!-- Presenter Notes -->
 </slide>
 
-<slide class="" id="slide-14" style="background:;">
+<slide class="" id="slide-13" style="background:;">
   <hgroup>
     <h2>Print a tree &quot;in words&quot;</h2>
   </hgroup>
@@ -468,12 +455,23 @@ pars: algorithm = &#39;ifan&#39;, goal = &#39;wacc&#39;, goal.chase = &#39;bacc&
   <!-- Presenter Notes -->
 </slide>
 
-<slide class="" id="slide-15" style="background:;">
+<slide class="" id="slide-14" style="background:;">
   <article data-timings="">
     <pre><code class="r">plot(heart.fft, stats = FALSE)
 </code></pre>
 
-<p><img src="figure/unnamed-chunk-18-1.png" title="plot of chunk unnamed-chunk-18" alt="plot of chunk unnamed-chunk-18" width="60%" style="display: block; margin: auto;" /></p>
+<p><img src="figure/unnamed-chunk-19-1.png" title="plot of chunk unnamed-chunk-19" alt="plot of chunk unnamed-chunk-19" width="60%" style="display: block; margin: auto;" /></p>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-15" style="background:;">
+  <article data-timings="">
+    <pre><code class="r">plot(heart.fft)  # Training data
+</code></pre>
+
+<p><img src="figure/unnamed-chunk-20-1.png" title="plot of chunk unnamed-chunk-20" alt="plot of chunk unnamed-chunk-20" width="55%" style="display: block; margin: auto;" /></p>
 
   </article>
   <!-- Presenter Notes -->
@@ -481,10 +479,7 @@ pars: algorithm = &#39;ifan&#39;, goal = &#39;wacc&#39;, goal.chase = &#39;bacc&
 
 <slide class="" id="slide-16" style="background:;">
   <article data-timings="">
-    <pre><code class="r">plot(heart.fft)  # Training data
-</code></pre>
-
-<p><img src="figure/unnamed-chunk-19-1.png" title="plot of chunk unnamed-chunk-19" alt="plot of chunk unnamed-chunk-19" width="55%" style="display: block; margin: auto;" /></p>
+    <p><img src="images/roc.png" title="plot of chunk unnamed-chunk-21" alt="plot of chunk unnamed-chunk-21" width="80%" style="display: block; margin: auto;" /></p>
 
   </article>
   <!-- Presenter Notes -->
@@ -492,26 +487,7 @@ pars: algorithm = &#39;ifan&#39;, goal = &#39;wacc&#39;, goal.chase = &#39;bacc&
 
 <slide class="" id="slide-17" style="background:;">
   <article data-timings="">
-    <p><img src="images/roc.png" title="plot of chunk unnamed-chunk-20" alt="plot of chunk unnamed-chunk-20" width="80%" style="display: block; margin: auto;" /></p>
-
-  </article>
-  <!-- Presenter Notes -->
-</slide>
-
-<slide class="" id="slide-18" style="background:;">
-  <article data-timings="">
     <pre><code class="r">plot(heart.fft, data = &quot;test&quot;, tree = 6)   # Testing data, tree 6
-</code></pre>
-
-<p><img src="figure/unnamed-chunk-21-1.png" title="plot of chunk unnamed-chunk-21" alt="plot of chunk unnamed-chunk-21" width="55%" style="display: block; margin: auto;" /></p>
-
-  </article>
-  <!-- Presenter Notes -->
-</slide>
-
-<slide class="" id="slide-19" style="background:;">
-  <article data-timings="">
-    <pre><code class="r">plot(heart.fft, data = &quot;test&quot;, tree = 7)   # Testing data, tree 7
 </code></pre>
 
 <p><img src="figure/unnamed-chunk-22-1.png" title="plot of chunk unnamed-chunk-22" alt="plot of chunk unnamed-chunk-22" width="55%" style="display: block; margin: auto;" /></p>
@@ -520,38 +496,46 @@ pars: algorithm = &#39;ifan&#39;, goal = &#39;wacc&#39;, goal.chase = &#39;bacc&
   <!-- Presenter Notes -->
 </slide>
 
-<slide class="" id="slide-20" style="background:;">
+<slide class="" id="slide-18" style="background:;">
+  <article data-timings="">
+    <pre><code class="r">plot(heart.fft, data = &quot;test&quot;, tree = 7)   # Testing data, tree 7
+</code></pre>
+
+<p><img src="figure/unnamed-chunk-23-1.png" title="plot of chunk unnamed-chunk-23" alt="plot of chunk unnamed-chunk-23" width="55%" style="display: block; margin: auto;" /></p>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-19" style="background:;">
   <article data-timings="">
     
 <div style='float:left;width:48%;' class='centered'>
-  <h2>Generalizing FFTrees</h2>
+  <h2>Prediction Simulation</h2>
 
 <ul>
 <li>The <code>FFTrees</code> package can be used with any dataset with a binary criterion.</li>
-<li>Simulation: 10 diverse datasets taken from the UCI Machine Learning Database.</li>
-<li>50\% Training, 50\% Testing.</li>
-<li>Criterion: Balanced accuracy (mean(sensitivity, specificity))</li>
-<li>FFTrees vs. rpart, regression, random forests...</li>
+<li>Simulation
+
+<ul>
+<li>10 diverse datasets taken from the UCI Machine Learning Database.</li>
+<li>50\% Training, 50\% Testing (results very similar for 10-fold cross validation)</li>
+<li>FFtrees vs rpart, regression, random forests...</li>
+</ul></li>
+<li>Criterion: Balanced accuracy
+
+<ul>
+<li>(mean(sensitivity, specificity))</li>
+</ul></li>
 </ul>
 
 <h3>How well can a simple fast-and-frugal tree predict data?</h3>
 
 </div>
 <div style='float:right;width:48%;'>
-  <p><img src="images/datacollage.png" title="plot of chunk unnamed-chunk-23" alt="plot of chunk unnamed-chunk-23" width="90%" style="display: block; margin: auto;" /></p>
+  <p><img src="images/datacollage.png" title="plot of chunk unnamed-chunk-24" alt="plot of chunk unnamed-chunk-24" width="90%" style="display: block; margin: auto;" /></p>
 
 </div>
-  </article>
-  <!-- Presenter Notes -->
-</slide>
-
-<slide class="class" id="id" style="background:;">
-  <hgroup>
-    <h2>Speed and frugality</h2>
-  </hgroup>
-  <article data-timings="">
-    <p><img src="figure/unnamed-chunk-24-1.png" title="plot of chunk unnamed-chunk-24" alt="plot of chunk unnamed-chunk-24" width="60%" style="display: block; margin: auto;" /></p>
-
   </article>
   <!-- Presenter Notes -->
 </slide>
@@ -569,10 +553,21 @@ pars: algorithm = &#39;ifan&#39;, goal = &#39;wacc&#39;, goal.chase = &#39;bacc&
 
 <slide class="class" id="id" style="background:;">
   <hgroup>
+    <h2>Speed and frugality</h2>
+  </hgroup>
+  <article data-timings="">
+    <p><img src="figure/unnamed-chunk-26-1.png" title="plot of chunk unnamed-chunk-26" alt="plot of chunk unnamed-chunk-26" width="60%" style="display: block; margin: auto;" /></p>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="class" id="id" style="background:;">
+  <hgroup>
     <h2>Training (balanced) accuracy (10 datasets)</h2>
   </hgroup>
   <article data-timings="">
-    <p><img src="figure/unnamed-chunk-26-1.png" title="plot of chunk unnamed-chunk-26" alt="plot of chunk unnamed-chunk-26" width="80%" style="display: block; margin: auto;" /></p>
+    <p><img src="figure/unnamed-chunk-27-1.png" title="plot of chunk unnamed-chunk-27" alt="plot of chunk unnamed-chunk-27" width="80%" style="display: block; margin: auto;" /></p>
 
   </article>
   <!-- Presenter Notes -->
@@ -583,7 +578,7 @@ pars: algorithm = &#39;ifan&#39;, goal = &#39;wacc&#39;, goal.chase = &#39;bacc&
     <h2>Testing (balanced) accuracy (10 datasets)</h2>
   </hgroup>
   <article data-timings="">
-    <p><img src="figure/unnamed-chunk-27-1.png" title="plot of chunk unnamed-chunk-27" alt="plot of chunk unnamed-chunk-27" width="80%" style="display: block; margin: auto;" /></p>
+    <p><img src="figure/unnamed-chunk-28-1.png" title="plot of chunk unnamed-chunk-28" alt="plot of chunk unnamed-chunk-28" width="80%" style="display: block; margin: auto;" /></p>
 
   </article>
   <!-- Presenter Notes -->
@@ -591,26 +586,15 @@ pars: algorithm = &#39;ifan&#39;, goal = &#39;wacc&#39;, goal.chase = &#39;bacc&
 
 <slide class="class" id="id" style="background:;">
   <article data-timings="">
-    <p><img src="images/MLR_Simulation_Trees.jpg" title="plot of chunk unnamed-chunk-28" alt="plot of chunk unnamed-chunk-28" width="72%" style="display: block; margin: auto;" /></p>
+    <p><img src="images/MLR_Simulation_Trees.jpg" title="plot of chunk unnamed-chunk-29" alt="plot of chunk unnamed-chunk-29" width="72%" style="display: block; margin: auto;" /></p>
 
   </article>
   <!-- Presenter Notes -->
 </slide>
 
-<slide class="" id="slide-26" style="background:;">
+<slide class="" id="slide-25" style="background:;">
   <hgroup>
     <h3>Mushrooms</h3>
-  </hgroup>
-  <article data-timings="">
-    <p><img src="figure/unnamed-chunk-29-1.png" title="plot of chunk unnamed-chunk-29" alt="plot of chunk unnamed-chunk-29" width="55%" style="display: block; margin: auto;" /></p>
-
-  </article>
-  <!-- Presenter Notes -->
-</slide>
-
-<slide class="" id="slide-27" style="background:;">
-  <hgroup>
-    <h3>Breast Cancer</h3>
   </hgroup>
   <article data-timings="">
     <p><img src="figure/unnamed-chunk-30-1.png" title="plot of chunk unnamed-chunk-30" alt="plot of chunk unnamed-chunk-30" width="55%" style="display: block; margin: auto;" /></p>
@@ -619,9 +603,9 @@ pars: algorithm = &#39;ifan&#39;, goal = &#39;wacc&#39;, goal.chase = &#39;bacc&
   <!-- Presenter Notes -->
 </slide>
 
-<slide class="" id="slide-28" style="background:;">
+<slide class="" id="slide-26" style="background:;">
   <hgroup>
-    <h3>Titanic</h3>
+    <h3>Breast Cancer</h3>
   </hgroup>
   <article data-timings="">
     <p><img src="figure/unnamed-chunk-31-1.png" title="plot of chunk unnamed-chunk-31" alt="plot of chunk unnamed-chunk-31" width="55%" style="display: block; margin: auto;" /></p>
@@ -630,12 +614,34 @@ pars: algorithm = &#39;ifan&#39;, goal = &#39;wacc&#39;, goal.chase = &#39;bacc&
   <!-- Presenter Notes -->
 </slide>
 
-<slide class="" id="slide-29" style="background:;">
+<slide class="" id="slide-27" style="background:;">
   <hgroup>
-    <h3>Additional functions and arguments</h3>
+    <h3>Titanic</h3>
   </hgroup>
   <article data-timings="">
-    <p><img src="images/FFTrees_Tutorial_SS.png" title="plot of chunk unnamed-chunk-32" alt="plot of chunk unnamed-chunk-32" width="90%" style="display: block; margin: auto;" /></p>
+    <p><img src="figure/unnamed-chunk-32-1.png" title="plot of chunk unnamed-chunk-32" alt="plot of chunk unnamed-chunk-32" width="55%" style="display: block; margin: auto;" /></p>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-28" style="background:;">
+  <hgroup>
+    <h3>Additional features</h3>
+  </hgroup>
+  <article data-timings="">
+    <p><img src="images/FFTrees_Tutorial_SS.png" title="plot of chunk unnamed-chunk-33" alt="plot of chunk unnamed-chunk-33" width="90%" style="display: block; margin: auto;" /></p>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-29" style="background:;">
+  <article data-timings="">
+    <pre><code class="r">plot(heart.fft, what = &quot;cues&quot;)
+</code></pre>
+
+<p><img src="figure/unnamed-chunk-34-1.png" title="plot of chunk unnamed-chunk-34" alt="plot of chunk unnamed-chunk-34" width="60%" style="display: block; margin: auto;" /></p>
 
   </article>
   <!-- Presenter Notes -->
@@ -658,7 +664,7 @@ my.tree = &quot;If chol &gt; 350, predict True.
 
 </div>
 <div style='float:right;width:48%;'>
-  <p><img src="figure/unnamed-chunk-35-1.png" title="plot of chunk unnamed-chunk-35" alt="plot of chunk unnamed-chunk-35" width="100%" style="display: block; margin: auto;" /></p>
+  <p><img src="figure/unnamed-chunk-37-1.png" title="plot of chunk unnamed-chunk-37" alt="plot of chunk unnamed-chunk-37" width="100%" style="display: block; margin: auto;" /></p>
 
 </div>
   </article>
@@ -676,33 +682,23 @@ my.tree = &quot;If chol &gt; 350, predict True.
 
 <table><thead>
 <tr>
-<th align="left"></th>
 <th align="left">cue</th>
 <th align="right">cost</th>
 </tr>
 </thead><tbody>
 <tr>
-<td align="left">2</td>
-<td align="left">sex</td>
-<td align="right">1.0</td>
-</tr>
-<tr>
-<td align="left">13</td>
 <td align="left">thal</td>
 <td align="right">102.9</td>
 </tr>
 <tr>
-<td align="left">3</td>
 <td align="left">cp</td>
 <td align="right">1.0</td>
 </tr>
 <tr>
-<td align="left">12</td>
 <td align="left">ca</td>
 <td align="right">100.9</td>
 </tr>
 <tr>
-<td align="left">4</td>
 <td align="left">trestbps</td>
 <td align="right">1.0</td>
 </tr>
@@ -717,7 +713,7 @@ FFTrees(formula = diagnosis ~.,
 <div style='float:right;width:48%;'>
   <h3>Original FFT (without costs)</h3>
 
-<p><img src="figure/unnamed-chunk-38-1.png" title="plot of chunk unnamed-chunk-38" alt="plot of chunk unnamed-chunk-38" width="100%" style="display: block; margin: auto;" /></p>
+<p><img src="figure/unnamed-chunk-40-1.png" title="plot of chunk unnamed-chunk-40" alt="plot of chunk unnamed-chunk-40" width="100%" style="display: block; margin: auto;" /></p>
 
 </div>
   </article>
@@ -778,7 +774,7 @@ FFTrees(formula = diagnosis ~.,
 <div style='float:right;width:48%;'>
   <h3>Cheap FFT</h3>
 
-<p><img src="figure/unnamed-chunk-42-1.png" title="plot of chunk unnamed-chunk-42" alt="plot of chunk unnamed-chunk-42" width="100%" style="display: block; margin: auto;" /></p>
+<p><img src="figure/unnamed-chunk-44-1.png" title="plot of chunk unnamed-chunk-44" alt="plot of chunk unnamed-chunk-44" width="100%" style="display: block; margin: auto;" /></p>
 
 </div>
   </article>
@@ -787,37 +783,26 @@ FFTrees(formula = diagnosis ~.,
 
 <slide class="" id="slide-33" style="background:;">
   <hgroup>
-    <h2>Conclusion</h2>
+    <h3>When should I consider an FFT?</h3>
   </hgroup>
   <article data-timings="">
     
-<div style='float:left;width:48%;' class='centered'>
-  <h3>Why use FFTrees?</h3>
-
-<ul>
-<li>See how, and how well, a crazy simple, transparent fast-and-frugal tree can make sense of your data.</li>
-<li>You might be surprised by how well it works, and generate new insights.</li>
-</ul>
-
-<pre><code class="r">library(&quot;FFTrees&quot;)
-    a      
-   / \     
-0   b  
-     / \   
-    0   1  
- FFTrees v1.3.2
-</code></pre>
-
-</div>
-<div style='float:right;width:48%;'>
-  <p><img src="figure/unnamed-chunk-44-1.png" title="plot of chunk unnamed-chunk-44" alt="plot of chunk unnamed-chunk-44" width="80%" style="display: block; margin: auto;" /></p>
-
-</div>
   </article>
   <!-- Presenter Notes -->
 </slide>
 
 <slide class="" id="slide-34" style="background:;">
+  <hgroup>
+    <h3>When should I consider an FFT?</h3>
+  </hgroup>
+  <article data-timings="">
+    <p><img src="images/considerFFT.jpg" title="plot of chunk unnamed-chunk-45" alt="plot of chunk unnamed-chunk-45" width="70%" style="display: block; margin: auto;" /></p>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-35" style="background:;">
   <hgroup>
     <h2>Publication and Collaborators</h2>
   </hgroup>
@@ -826,7 +811,7 @@ FFTrees(formula = diagnosis ~.,
 <div style='float:left;width:48%;' class='centered'>
   <h3>Publication</h3>
 
-<p>Phillips, Nathaniel D., Neth, Hansjoerg, Woike, Jan &amp; Gaissmeier, Wolfgang. (2017). FFTrees: A toolbox to create, visualize and evaluate fast-and-frugal decision trees. <em>Judgment and Decision Making</em>.</p>
+<p>FFTrees: A toolbox to create, visualize and evaluate fast-and-frugal decision trees. <em>Judgment and Decision Making</em>.</p>
 
 <h3>Collaborators</h3>
 
@@ -838,7 +823,7 @@ FFTrees(formula = diagnosis ~.,
 
 </div>
 <div style='float:right;width:48%;'>
-  <p><img src="images/collaborators.png" title="plot of chunk unnamed-chunk-45" alt="plot of chunk unnamed-chunk-45" width="90%" style="display: block; margin: auto;" /></p>
+  <p><img src="images/collaborators.png" title="plot of chunk unnamed-chunk-46" alt="plot of chunk unnamed-chunk-46" width="90%" style="display: block; margin: auto;" /></p>
 
 </div>
   </article>
@@ -866,7 +851,7 @@ FFTrees(formula = diagnosis ~.,
   <!-- Presenter Notes -->
 </slide>
 
-<slide class="" id="slide-36" style="background:;">
+<slide class="" id="slide-37" style="background:;">
   <article data-timings="">
     
 <div style='float:left;width:48%;' class='centered'>
@@ -876,7 +861,7 @@ FFTrees(formula = diagnosis ~.,
 <li>Many cues, weak validity, ind errors</li>
 </ul>
 
-<p><img src="figure/unnamed-chunk-46-1.png" title="plot of chunk unnamed-chunk-46" alt="plot of chunk unnamed-chunk-46" width="100%" style="display: block; margin: auto;" /></p>
+<p><img src="figure/unnamed-chunk-47-1.png" title="plot of chunk unnamed-chunk-47" alt="plot of chunk unnamed-chunk-47" width="100%" style="display: block; margin: auto;" /></p>
 
 </div>
 <div style='float:right;width:48%;'>
@@ -886,14 +871,14 @@ FFTrees(formula = diagnosis ~.,
 <li>Few cues with high validity, dep errors.</li>
 </ul>
 
-<p><img src="figure/unnamed-chunk-47-1.png" title="plot of chunk unnamed-chunk-47" alt="plot of chunk unnamed-chunk-47" width="100%" style="display: block; margin: auto;" /></p>
+<p><img src="figure/unnamed-chunk-48-1.png" title="plot of chunk unnamed-chunk-48" alt="plot of chunk unnamed-chunk-48" width="100%" style="display: block; margin: auto;" /></p>
 
 </div>
   </article>
   <!-- Presenter Notes -->
 </slide>
 
-<slide class="" id="slide-37" style="background:;">
+<slide class="" id="slide-38" style="background:;">
   <article data-timings="">
     
 <div style='float:left;width:48%;' class='centered'>
@@ -909,38 +894,27 @@ FFTrees(formula = diagnosis ~.,
 
 </div>
 <div style='float:right;width:48%;'>
-  <p><img src="figure/unnamed-chunk-48-1.png" title="plot of chunk unnamed-chunk-48" alt="plot of chunk unnamed-chunk-48" width="80%" style="display: block; margin: auto;" /></p>
+  <p><img src="figure/unnamed-chunk-49-1.png" title="plot of chunk unnamed-chunk-49" alt="plot of chunk unnamed-chunk-49" width="80%" style="display: block; margin: auto;" /></p>
 
-<p><img src="images/roc.jpg" title="plot of chunk unnamed-chunk-49" alt="plot of chunk unnamed-chunk-49" width="70%" style="display: block; margin: auto;" /></p>
+<p><img src="images/roc.jpg" title="plot of chunk unnamed-chunk-50" alt="plot of chunk unnamed-chunk-50" width="70%" style="display: block; margin: auto;" /></p>
 
 </div>
   </article>
   <!-- Presenter Notes -->
 </slide>
 
-<slide class="" id="slide-38" style="background:;">
-  <article data-timings="">
-    <pre><code class="r">plot(heart.fft, what = &quot;cues&quot;)
-</code></pre>
-
-<p><img src="figure/unnamed-chunk-50-1.png" title="plot of chunk unnamed-chunk-50" alt="plot of chunk unnamed-chunk-50" width="60%" style="display: block; margin: auto;" /></p>
-
-  </article>
-  <!-- Presenter Notes -->
-</slide>
-
 <slide class="" id="slide-39" style="background:;">
   <hgroup>
-    <h3>When should I consider an FFT?</h3>
+    <h3>Conclusion</h3>
   </hgroup>
   <article data-timings="">
-    <p><img src="images/considerFFT.jpg" title="plot of chunk unnamed-chunk-51" alt="plot of chunk unnamed-chunk-51" width="70%" style="display: block; margin: auto;" /></p>
+    <p><img src="figure/unnamed-chunk-51-1.png" title="plot of chunk unnamed-chunk-51" alt="plot of chunk unnamed-chunk-51" width="90%" style="display: block; margin: auto;" /></p>
 
   </article>
   <!-- Presenter Notes -->
 </slide>
 
-<slide class="" id="slide-40" style="background:;">
+<slide class="class" id="id" style="background:;">
   <hgroup>
     <h3>Conclusion</h3>
   </hgroup>
@@ -962,9 +936,9 @@ FFTrees(formula = diagnosis ~.,
   <!-- Presenter Notes -->
 </slide>
 
-<slide class="class" id="id" style="background:;">
+<slide class="" id="slide-42" style="background:;">
   <hgroup>
-    <h3>Conclusion</h3>
+    <h3>How accurate can FFTs be?</h3>
   </hgroup>
   <article data-timings="">
     <p><img src="figure/unnamed-chunk-54-1.png" title="plot of chunk unnamed-chunk-54" alt="plot of chunk unnamed-chunk-54" width="90%" style="display: block; margin: auto;" /></p>
@@ -986,10 +960,10 @@ FFTrees(formula = diagnosis ~.,
 
 <slide class="" id="slide-44" style="background:;">
   <hgroup>
-    <h3>How accurate can FFTs be?</h3>
+    <h3>Forest Fires (Training)</h3>
   </hgroup>
   <article data-timings="">
-    <p><img src="figure/unnamed-chunk-56-1.png" title="plot of chunk unnamed-chunk-56" alt="plot of chunk unnamed-chunk-56" width="90%" style="display: block; margin: auto;" /></p>
+    <p><img src="figure/unnamed-chunk-56-1.png" title="plot of chunk unnamed-chunk-56" alt="plot of chunk unnamed-chunk-56" width="55%" style="display: block; margin: auto;" /></p>
 
   </article>
   <!-- Presenter Notes -->
@@ -997,7 +971,7 @@ FFTrees(formula = diagnosis ~.,
 
 <slide class="" id="slide-45" style="background:;">
   <hgroup>
-    <h3>Forest Fires (Training)</h3>
+    <h3>Forest Fires (Testing)</h3>
   </hgroup>
   <article data-timings="">
     <p><img src="figure/unnamed-chunk-57-1.png" title="plot of chunk unnamed-chunk-57" alt="plot of chunk unnamed-chunk-57" width="55%" style="display: block; margin: auto;" /></p>
@@ -1019,11 +993,32 @@ FFTrees(formula = diagnosis ~.,
 
 <slide class="" id="slide-47" style="background:;">
   <hgroup>
-    <h3>Forest Fires (Testing)</h3>
+    <h2>Conclusion</h2>
   </hgroup>
   <article data-timings="">
-    <p><img src="figure/unnamed-chunk-59-1.png" title="plot of chunk unnamed-chunk-59" alt="plot of chunk unnamed-chunk-59" width="55%" style="display: block; margin: auto;" /></p>
+    
+<div style='float:left;width:48%;' class='centered'>
+  <h3>Why use FFTrees?</h3>
 
+<ul>
+<li>See how, and how well, a crazy simple, transparent fast-and-frugal tree can make sense of your data.</li>
+<li>You might be surprised by how well it works, and generate new insights.</li>
+</ul>
+
+<pre><code class="r">library(&quot;FFTrees&quot;)
+    a      
+   / \     
+0   b  
+     / \   
+    0   1  
+ FFTrees v1.3.2
+</code></pre>
+
+</div>
+<div style='float:right;width:48%;'>
+  <p><img src="figure/unnamed-chunk-60-1.png" title="plot of chunk unnamed-chunk-60" alt="plot of chunk unnamed-chunk-60" width="80%" style="display: block; margin: auto;" /></p>
+
+</div>
   </article>
   <!-- Presenter Notes -->
 </slide>
@@ -1036,7 +1031,7 @@ FFTrees(formula = diagnosis ~.,
     <pre><code class="r">heart.fff &lt;- FFForest(formula = diagnosis ~., data = heartdisease)
 </code></pre>
 
-<p><img src="figure/unnamed-chunk-61-1.png" title="plot of chunk unnamed-chunk-61" alt="plot of chunk unnamed-chunk-61" width="90%" style="display: block; margin: auto;" /></p>
+<p><img src="figure/unnamed-chunk-62-1.png" title="plot of chunk unnamed-chunk-62" alt="plot of chunk unnamed-chunk-62" width="90%" style="display: block; margin: auto;" /></p>
 
   </article>
   <!-- Presenter Notes -->
@@ -1084,7 +1079,7 @@ FFTrees(formula = diagnosis ~.,
     </li>
     <li>
       <a href="#" target="_self" rel='tooltip' 
-        data-slide=7 title='Why an FFT?'>
+        data-slide=7 title='Examples of FFTs'>
          7
       </a>
     </li>
@@ -1096,37 +1091,37 @@ FFTrees(formula = diagnosis ~.,
     </li>
     <li>
       <a href="#" target="_self" rel='tooltip' 
-        data-slide=9 title='Examples of FFTs'>
+        data-slide=9 title='FFTrees'>
          9
       </a>
     </li>
     <li>
       <a href="#" target="_self" rel='tooltip' 
-        data-slide=10 title='FFTrees'>
+        data-slide=10 title='Example: Heart Disease'>
          10
       </a>
     </li>
     <li>
       <a href="#" target="_self" rel='tooltip' 
-        data-slide=11 title='Example: Heart Disease'>
+        data-slide=11 title='3 Steps to creating FFTs with FFTrees'>
          11
       </a>
     </li>
     <li>
       <a href="#" target="_self" rel='tooltip' 
-        data-slide=12 title='3 Steps to creating FFTs with FFTrees'>
+        data-slide=12 title='Print an <code>FFTrees</code> object'>
          12
       </a>
     </li>
     <li>
       <a href="#" target="_self" rel='tooltip' 
-        data-slide=13 title='Print an <code>FFTrees</code> object'>
+        data-slide=13 title='Print a tree &quot;in words&quot;'>
          13
       </a>
     </li>
     <li>
       <a href="#" target="_self" rel='tooltip' 
-        data-slide=14 title='Print a tree &quot;in words&quot;'>
+        data-slide=14 title='NA'>
          14
       </a>
     </li>
@@ -1162,7 +1157,7 @@ FFTrees(formula = diagnosis ~.,
     </li>
     <li>
       <a href="#" target="_self" rel='tooltip' 
-        data-slide=20 title='NA'>
+        data-slide=20 title='Speed and frugality'>
          20
       </a>
     </li>
@@ -1174,49 +1169,49 @@ FFTrees(formula = diagnosis ~.,
     </li>
     <li>
       <a href="#" target="_self" rel='tooltip' 
-        data-slide=22 title='Speed and frugality'>
+        data-slide=22 title='Training (balanced) accuracy (10 datasets)'>
          22
       </a>
     </li>
     <li>
       <a href="#" target="_self" rel='tooltip' 
-        data-slide=23 title='Training (balanced) accuracy (10 datasets)'>
+        data-slide=23 title='Testing (balanced) accuracy (10 datasets)'>
          23
       </a>
     </li>
     <li>
       <a href="#" target="_self" rel='tooltip' 
-        data-slide=24 title='Testing (balanced) accuracy (10 datasets)'>
+        data-slide=24 title='NA'>
          24
       </a>
     </li>
     <li>
       <a href="#" target="_self" rel='tooltip' 
-        data-slide=25 title='NA'>
+        data-slide=25 title='Mushrooms'>
          25
       </a>
     </li>
     <li>
       <a href="#" target="_self" rel='tooltip' 
-        data-slide=26 title='Mushrooms'>
+        data-slide=26 title='Breast Cancer'>
          26
       </a>
     </li>
     <li>
       <a href="#" target="_self" rel='tooltip' 
-        data-slide=27 title='Breast Cancer'>
+        data-slide=27 title='Titanic'>
          27
       </a>
     </li>
     <li>
       <a href="#" target="_self" rel='tooltip' 
-        data-slide=28 title='Titanic'>
+        data-slide=28 title='Additional features'>
          28
       </a>
     </li>
     <li>
       <a href="#" target="_self" rel='tooltip' 
-        data-slide=29 title='Additional functions and arguments'>
+        data-slide=29 title='NA'>
          29
       </a>
     </li>
@@ -1240,25 +1235,25 @@ FFTrees(formula = diagnosis ~.,
     </li>
     <li>
       <a href="#" target="_self" rel='tooltip' 
-        data-slide=33 title='Conclusion'>
+        data-slide=33 title='When should I consider an FFT?'>
          33
       </a>
     </li>
     <li>
       <a href="#" target="_self" rel='tooltip' 
-        data-slide=34 title='Publication and Collaborators'>
+        data-slide=34 title='When should I consider an FFT?'>
          34
       </a>
     </li>
     <li>
       <a href="#" target="_self" rel='tooltip' 
-        data-slide=35 title='FFTrees'>
+        data-slide=35 title='Publication and Collaborators'>
          35
       </a>
     </li>
     <li>
       <a href="#" target="_self" rel='tooltip' 
-        data-slide=36 title='NA'>
+        data-slide=36 title='FFTrees'>
          36
       </a>
     </li>
@@ -1276,7 +1271,7 @@ FFTrees(formula = diagnosis ~.,
     </li>
     <li>
       <a href="#" target="_self" rel='tooltip' 
-        data-slide=39 title='When should I consider an FFT?'>
+        data-slide=39 title='Conclusion'>
          39
       </a>
     </li>
@@ -1294,7 +1289,7 @@ FFTrees(formula = diagnosis ~.,
     </li>
     <li>
       <a href="#" target="_self" rel='tooltip' 
-        data-slide=42 title='Conclusion'>
+        data-slide=42 title='How accurate can FFTs be?'>
          42
       </a>
     </li>
@@ -1306,13 +1301,13 @@ FFTrees(formula = diagnosis ~.,
     </li>
     <li>
       <a href="#" target="_self" rel='tooltip' 
-        data-slide=44 title='How accurate can FFTs be?'>
+        data-slide=44 title='Forest Fires (Training)'>
          44
       </a>
     </li>
     <li>
       <a href="#" target="_self" rel='tooltip' 
-        data-slide=45 title='Forest Fires (Training)'>
+        data-slide=45 title='Forest Fires (Testing)'>
          45
       </a>
     </li>
@@ -1324,7 +1319,7 @@ FFTrees(formula = diagnosis ~.,
     </li>
     <li>
       <a href="#" target="_self" rel='tooltip' 
-        data-slide=47 title='Forest Fires (Testing)'>
+        data-slide=47 title='Conclusion'>
          47
       </a>
     </li>
