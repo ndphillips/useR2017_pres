@@ -369,19 +369,16 @@ plot(heart.fft, data = "test", tree = 7)   # Testing data, tree 7
 
 
 ---
-### Mushrooms
-<img src="figure/unnamed-chunk-29-1.png" title="plot of chunk unnamed-chunk-29" alt="plot of chunk unnamed-chunk-29" width="55%" style="display: block; margin: auto;" />
+<img src="figure/unnamed-chunk-29-1.png" title="plot of chunk unnamed-chunk-29" alt="plot of chunk unnamed-chunk-29" width="60%" style="display: block; margin: auto;" />
 
 
 
 ---
-### Breast Cancer
-<img src="figure/unnamed-chunk-30-1.png" title="plot of chunk unnamed-chunk-30" alt="plot of chunk unnamed-chunk-30" width="55%" style="display: block; margin: auto;" />
+<img src="figure/unnamed-chunk-30-1.png" title="plot of chunk unnamed-chunk-30" alt="plot of chunk unnamed-chunk-30" width="60%" style="display: block; margin: auto;" />
 
 
 ---
-### Titanic
-<img src="figure/unnamed-chunk-31-1.png" title="plot of chunk unnamed-chunk-31" alt="plot of chunk unnamed-chunk-31" width="55%" style="display: block; margin: auto;" />
+<img src="figure/unnamed-chunk-31-1.png" title="plot of chunk unnamed-chunk-31" alt="plot of chunk unnamed-chunk-31" width="60%" style="display: block; margin: auto;" />
 
 
 ---
@@ -500,8 +497,6 @@ FFTrees(formula, data,
 ---
 
 <q>When should I consider an FFT?</q>
-
-- You (or your clients)
 
 --- .nobackground
 ### When should I consider an FFT?

@@ -525,24 +525,21 @@ knitr::include_graphics(c("images/MLR_Simulation_Trees.jpg"))
 
 
 ---
-### Mushrooms
-```{r out.width = "55%", echo = FALSE}
+```{r out.width = "60%", echo = FALSE}
 plot(mushrooms.fft)
 ```
 
 
 
 ---
-### Breast Cancer
-```{r out.width = "55%", echo = FALSE}
+```{r out.width = "60%", echo = FALSE}
 breast.fft <- FFTrees(diagnosis ~., data = breastcancer, main = "Breast Cancer", decision.labels = c("Healthy", "Cancer"))
 plot(breast.fft)
 ```
 
 
 ---
-### Titanic
-```{r out.width = "55%", echo = FALSE}
+```{r out.width = "60%", echo = FALSE}
 titanic.fft <- FFTrees(survived ~., data = titanic, main = "Titanic", decision.labels = c("Died", "Survived"))
 plot(titanic.fft)
 ```
@@ -723,8 +720,6 @@ plot(heart.cost.fft)
 ---
 
 <q>When should I consider an FFT?</q>
-
-- You (or your clients)
 
 --- .nobackground
 ### When should I consider an FFT?
