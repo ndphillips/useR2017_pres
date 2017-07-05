@@ -727,7 +727,7 @@ plot(heart.cost.fft)
 - You (or your clients)
 
 --- .nobackground
-## Should I consider an FFT?
+### When should I consider an FFT?
 
 ```{r , fig.margin = TRUE, echo = FALSE, out.width = "70%", fig.align='center'}
 knitr::include_graphics(c("images/considerFFT.jpg"))

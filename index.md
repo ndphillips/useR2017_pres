@@ -504,7 +504,7 @@ FFTrees(formula, data,
 - You (or your clients)
 
 --- .nobackground
-## Should I consider an FFT?
+### When should I consider an FFT?
 
 <img src="images/considerFFT.jpg" title="plot of chunk unnamed-chunk-46" alt="plot of chunk unnamed-chunk-46" width="70%" style="display: block; margin: auto;" />
 
