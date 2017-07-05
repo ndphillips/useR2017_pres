@@ -231,13 +231,29 @@ library("FFTrees")
 
 ## Example: Heart Disease
 
+
 ```{r, echo = FALSE, message = FALSE}
 library(FFTrees)
 knitr::kable(head(heartdisease))
 ```
 
 - Goal: Predict diagnosis as a function of cues.
-- Regression: 6 significant cues (sex, cp, thalach, exang, oldpeak, ca)
+
+---
+## Cue importance
+
+- As calculated by `randomForest`
+
+```{r, echo = FALSE, fig.width = 10, fig.height = 6, out.width = "80%"}
+heart.importance <- heart.fft$comp$rf$model$importance
+heart.importance <- data.frame(cue = rownames(heart.fft$comp$rf$model$importance), 
+                               importance = heart.importance[,1])
+
+heart.importance <- heart.importance[order(heart.importance$importance),]
+yarrr::pirateplot(formula = importance ~ cue, data = heart.importance, sortx = "s", bar.f.o = .5, bar.f.col = "blue")
+```
+
+
 
 
 ---
@@ -311,14 +327,14 @@ inwords(heart.fft)
 ---
 
 ```{r, fig.align = 'center', echo = TRUE, out.width = "60%"}
-plot(heart.fft, stats = FALSE)
+plot(heart.fft, stats = FALSE, data = "test")
 ```
 
 
 ---
 
 ```{r, fig.align = 'center', echo = TRUE, out.width = "55%"}
-plot(heart.fft)  # Training data
+plot(heart.fft, data = "test")  # Training data
 ```
 
 ---
