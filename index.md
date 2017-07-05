@@ -350,13 +350,13 @@ plot(heart.fft, data = "test", tree = 7)   # Testing data, tree 7
 
 
 --- .class #id 
-## Training (all datasets)
+## Training Balanced Accuracy (all datasets)
 
 <img src="figure/unnamed-chunk-26-1.png" title="plot of chunk unnamed-chunk-26" alt="plot of chunk unnamed-chunk-26" width="80%" style="display: block; margin: auto;" />
 
 
 --- .class #id 
-## Testing (all datasets)
+## Testing Balanced Accuracy (all datasets)
 
 <img src="figure/unnamed-chunk-27-1.png" title="plot of chunk unnamed-chunk-27" alt="plot of chunk unnamed-chunk-27" width="80%" style="display: block; margin: auto;" />
 
@@ -504,7 +504,7 @@ FFTrees(formula, data,
 - You (or your clients)
 
 --- .nobackground
-## Meta FFT
+## Should I consider an FFT?
 
 <img src="images/considerFFT.jpg" title="plot of chunk unnamed-chunk-46" alt="plot of chunk unnamed-chunk-46" width="70%" style="display: block; margin: auto;" />
 

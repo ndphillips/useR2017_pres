@@ -427,7 +427,7 @@ segments(mcu, pci, rep(7.5, length(data.name)), seq(.1, .9, length.out = length(
 
 
 --- .class #id 
-## Training (all datasets)
+## Training Balanced Accuracy (all datasets)
 
 ```{r , fig.margin = TRUE, echo = FALSE, out.width = "80%", fig.align='center', fig.width = 8, fig.height = 6}
 {
@@ -472,7 +472,7 @@ abline(h = .865, lty = 2, lwd = 1.5)
 
 
 --- .class #id 
-## Testing (all datasets)
+## Testing Balanced Accuracy (all datasets)
 
 ```{r , fig.margin = TRUE, echo = FALSE, out.width = "80%", fig.align='center', fig.width = 8, fig.height = 6}
 {
@@ -727,7 +727,7 @@ plot(heart.cost.fft)
 - You (or your clients)
 
 --- .nobackground
-## Meta FFT
+## Should I consider an FFT?
 
 ```{r , fig.margin = TRUE, echo = FALSE, out.width = "70%", fig.align='center'}
 knitr::include_graphics(c("images/considerFFT.jpg"))
