@@ -30,7 +30,7 @@ knitr::include_graphics(c("images/threeexamples.png"))
 
 
 
----&twocol
+---&twocol .nobackground
 
 ```{r, echo = FALSE, message = FALSE}
 library(FFTrees)
@@ -670,7 +670,7 @@ plot(heart.cost.fft)
 ### When should I consider an FFT?
 
 
----
+--- .nobackground
 
 ### When should I consider an FFT?
 
@@ -706,17 +706,26 @@ knitr::include_graphics(c("images/collaborators.png"))
 
 --- .class #id 
 
-### FFTrees
+## FFTrees
 
-- FFTrees: `install.packages("FFTrees")`, http://www.github.com/ndphillips/FFTrees
 
-#### My Links
+```{r , fig.margin = TRUE, echo = FALSE, out.width = "20%", fig.align='center', message = FALSE, echo = FALSE}
+ knitr::include_graphics(c("images/FFTrees_Logo.jpg"))
+```
 
-- This presentation: [https://ndphillips.github.io/useRJuly2017](https://ndphillips.github.io/useRJuly2017)
+
+
+```{r, eval = FALSE}
+install.packages("FFTrees")   # Install FFTrees from CRAN
+library("FFTrees")            # Load FFTrees
+FFTrees_guide()               # Open the main package guide
+```
+
+
+- Github: [http://www.github.com/ndphillips/FFTrees](http://www.github.com/ndphillips/FFTrees)
+- This presentation: [https://github.com/ndphillips/useR2017_pres](https://github.com/ndphillips/useR2017_pres)
 - Website: https://ndphillips.github.io
 - Email: Nathaniel.D.Phillips.is@gmail.com
-
-
 
 
 

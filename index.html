@@ -61,7 +61,7 @@
   <!-- Presenter Notes -->
 </slide>
 
-<slide class="" id="slide-3" style="background:;">
+<slide class="nobackground" id="slide-3" style="background:;">
   <hgroup>
     <h2>Cook County Hospital, 1996</h2>
   </hgroup>
@@ -529,8 +529,6 @@ pars: algorithm = &#39;ifan&#39;, goal = &#39;wacc&#39;, goal.chase = &#39;bacc&
 </ul></li>
 </ul>
 
-<h3>How well can a simple fast-and-frugal tree predict data?</h3>
-
 </div>
 <div style='float:right;width:48%;'>
   <p><img src="images/datacollage.png" title="plot of chunk unnamed-chunk-24" alt="plot of chunk unnamed-chunk-24" width="90%" style="display: block; margin: auto;" /></p>
@@ -564,7 +562,7 @@ pars: algorithm = &#39;ifan&#39;, goal = &#39;wacc&#39;, goal.chase = &#39;bacc&
 
 <slide class="class" id="id" style="background:;">
   <hgroup>
-    <h2>Training (balanced) accuracy (10 datasets)</h2>
+    <h2>Training (all datasets)</h2>
   </hgroup>
   <article data-timings="">
     <p><img src="figure/unnamed-chunk-27-1.png" title="plot of chunk unnamed-chunk-27" alt="plot of chunk unnamed-chunk-27" width="80%" style="display: block; margin: auto;" /></p>
@@ -575,7 +573,7 @@ pars: algorithm = &#39;ifan&#39;, goal = &#39;wacc&#39;, goal.chase = &#39;bacc&
 
 <slide class="class" id="id" style="background:;">
   <hgroup>
-    <h2>Testing (balanced) accuracy (10 datasets)</h2>
+    <h2>Testing (all datasets)</h2>
   </hgroup>
   <article data-timings="">
     <p><img src="figure/unnamed-chunk-28-1.png" title="plot of chunk unnamed-chunk-28" alt="plot of chunk unnamed-chunk-28" width="80%" style="display: block; margin: auto;" /></p>
@@ -791,7 +789,7 @@ FFTrees(formula = diagnosis ~.,
   <!-- Presenter Notes -->
 </slide>
 
-<slide class="" id="slide-34" style="background:;">
+<slide class="nobackground" id="slide-34" style="background:;">
   <hgroup>
     <h3>When should I consider an FFT?</h3>
   </hgroup>
@@ -832,17 +830,19 @@ FFTrees(formula = diagnosis ~.,
 
 <slide class="class" id="id" style="background:;">
   <hgroup>
-    <h3>FFTrees</h3>
+    <h2>FFTrees</h2>
   </hgroup>
   <article data-timings="">
-    <ul>
-<li>FFTrees: <code>install.packages(&quot;FFTrees&quot;)</code>, <a href="http://www.github.com/ndphillips/FFTrees">http://www.github.com/ndphillips/FFTrees</a></li>
-</ul>
+    <p><img src="images/FFTrees_Logo.jpg" title="plot of chunk unnamed-chunk-47" alt="plot of chunk unnamed-chunk-47" width="20%" style="display: block; margin: auto;" /></p>
 
-<h4>My Links</h4>
+<pre><code class="r">install.packages(&quot;FFTrees&quot;)   # Install FFTrees from CRAN
+library(&quot;FFTrees&quot;)            # Load FFTrees
+FFTrees_guide()               # Open the main package guide
+</code></pre>
 
 <ul>
-<li>This presentation: <a href="https://ndphillips.github.io/useRJuly2017">https://ndphillips.github.io/useRJuly2017</a></li>
+<li>Github: <a href="http://www.github.com/ndphillips/FFTrees">http://www.github.com/ndphillips/FFTrees</a></li>
+<li>This presentation: <a href="https://github.com/ndphillips/useR2017_pres">https://github.com/ndphillips/useR2017_pres</a></li>
 <li>Website: <a href="https://ndphillips.github.io">https://ndphillips.github.io</a></li>
 <li>Email: <a href="mailto:Nathaniel.D.Phillips.is@gmail.com">Nathaniel.D.Phillips.is@gmail.com</a></li>
 </ul>
@@ -861,7 +861,7 @@ FFTrees(formula = diagnosis ~.,
 <li>Many cues, weak validity, ind errors</li>
 </ul>
 
-<p><img src="figure/unnamed-chunk-47-1.png" title="plot of chunk unnamed-chunk-47" alt="plot of chunk unnamed-chunk-47" width="100%" style="display: block; margin: auto;" /></p>
+<p><img src="figure/unnamed-chunk-49-1.png" title="plot of chunk unnamed-chunk-49" alt="plot of chunk unnamed-chunk-49" width="100%" style="display: block; margin: auto;" /></p>
 
 </div>
 <div style='float:right;width:48%;'>
@@ -871,7 +871,7 @@ FFTrees(formula = diagnosis ~.,
 <li>Few cues with high validity, dep errors.</li>
 </ul>
 
-<p><img src="figure/unnamed-chunk-48-1.png" title="plot of chunk unnamed-chunk-48" alt="plot of chunk unnamed-chunk-48" width="100%" style="display: block; margin: auto;" /></p>
+<p><img src="figure/unnamed-chunk-50-1.png" title="plot of chunk unnamed-chunk-50" alt="plot of chunk unnamed-chunk-50" width="100%" style="display: block; margin: auto;" /></p>
 
 </div>
   </article>
@@ -894,9 +894,9 @@ FFTrees(formula = diagnosis ~.,
 
 </div>
 <div style='float:right;width:48%;'>
-  <p><img src="figure/unnamed-chunk-49-1.png" title="plot of chunk unnamed-chunk-49" alt="plot of chunk unnamed-chunk-49" width="80%" style="display: block; margin: auto;" /></p>
+  <p><img src="figure/unnamed-chunk-51-1.png" title="plot of chunk unnamed-chunk-51" alt="plot of chunk unnamed-chunk-51" width="80%" style="display: block; margin: auto;" /></p>
 
-<p><img src="images/roc.jpg" title="plot of chunk unnamed-chunk-50" alt="plot of chunk unnamed-chunk-50" width="70%" style="display: block; margin: auto;" /></p>
+<p><img src="images/roc.jpg" title="plot of chunk unnamed-chunk-52" alt="plot of chunk unnamed-chunk-52" width="70%" style="display: block; margin: auto;" /></p>
 
 </div>
   </article>
@@ -908,29 +908,29 @@ FFTrees(formula = diagnosis ~.,
     <h3>Conclusion</h3>
   </hgroup>
   <article data-timings="">
-    <p><img src="figure/unnamed-chunk-51-1.png" title="plot of chunk unnamed-chunk-51" alt="plot of chunk unnamed-chunk-51" width="90%" style="display: block; margin: auto;" /></p>
-
-  </article>
-  <!-- Presenter Notes -->
-</slide>
-
-<slide class="class" id="id" style="background:;">
-  <hgroup>
-    <h3>Conclusion</h3>
-  </hgroup>
-  <article data-timings="">
-    <p><img src="figure/unnamed-chunk-52-1.png" title="plot of chunk unnamed-chunk-52" alt="plot of chunk unnamed-chunk-52" width="90%" style="display: block; margin: auto;" /></p>
-
-  </article>
-  <!-- Presenter Notes -->
-</slide>
-
-<slide class="class" id="id" style="background:;">
-  <hgroup>
-    <h3>Conclusion</h3>
-  </hgroup>
-  <article data-timings="">
     <p><img src="figure/unnamed-chunk-53-1.png" title="plot of chunk unnamed-chunk-53" alt="plot of chunk unnamed-chunk-53" width="90%" style="display: block; margin: auto;" /></p>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="class" id="id" style="background:;">
+  <hgroup>
+    <h3>Conclusion</h3>
+  </hgroup>
+  <article data-timings="">
+    <p><img src="figure/unnamed-chunk-54-1.png" title="plot of chunk unnamed-chunk-54" alt="plot of chunk unnamed-chunk-54" width="90%" style="display: block; margin: auto;" /></p>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="class" id="id" style="background:;">
+  <hgroup>
+    <h3>Conclusion</h3>
+  </hgroup>
+  <article data-timings="">
+    <p><img src="figure/unnamed-chunk-55-1.png" title="plot of chunk unnamed-chunk-55" alt="plot of chunk unnamed-chunk-55" width="90%" style="display: block; margin: auto;" /></p>
 
   </article>
   <!-- Presenter Notes -->
@@ -941,7 +941,7 @@ FFTrees(formula = diagnosis ~.,
     <h3>How accurate can FFTs be?</h3>
   </hgroup>
   <article data-timings="">
-    <p><img src="figure/unnamed-chunk-54-1.png" title="plot of chunk unnamed-chunk-54" alt="plot of chunk unnamed-chunk-54" width="90%" style="display: block; margin: auto;" /></p>
+    <p><img src="figure/unnamed-chunk-56-1.png" title="plot of chunk unnamed-chunk-56" alt="plot of chunk unnamed-chunk-56" width="90%" style="display: block; margin: auto;" /></p>
 
   </article>
   <!-- Presenter Notes -->
@@ -952,7 +952,7 @@ FFTrees(formula = diagnosis ~.,
     <h3>How accurate can FFTs be?</h3>
   </hgroup>
   <article data-timings="">
-    <p><img src="figure/unnamed-chunk-55-1.png" title="plot of chunk unnamed-chunk-55" alt="plot of chunk unnamed-chunk-55" width="90%" style="display: block; margin: auto;" /></p>
+    <p><img src="figure/unnamed-chunk-57-1.png" title="plot of chunk unnamed-chunk-57" alt="plot of chunk unnamed-chunk-57" width="90%" style="display: block; margin: auto;" /></p>
 
   </article>
   <!-- Presenter Notes -->
@@ -963,7 +963,7 @@ FFTrees(formula = diagnosis ~.,
     <h3>Forest Fires (Training)</h3>
   </hgroup>
   <article data-timings="">
-    <p><img src="figure/unnamed-chunk-56-1.png" title="plot of chunk unnamed-chunk-56" alt="plot of chunk unnamed-chunk-56" width="55%" style="display: block; margin: auto;" /></p>
+    <p><img src="figure/unnamed-chunk-58-1.png" title="plot of chunk unnamed-chunk-58" alt="plot of chunk unnamed-chunk-58" width="55%" style="display: block; margin: auto;" /></p>
 
   </article>
   <!-- Presenter Notes -->
@@ -974,7 +974,7 @@ FFTrees(formula = diagnosis ~.,
     <h3>Forest Fires (Testing)</h3>
   </hgroup>
   <article data-timings="">
-    <p><img src="figure/unnamed-chunk-57-1.png" title="plot of chunk unnamed-chunk-57" alt="plot of chunk unnamed-chunk-57" width="55%" style="display: block; margin: auto;" /></p>
+    <p><img src="figure/unnamed-chunk-59-1.png" title="plot of chunk unnamed-chunk-59" alt="plot of chunk unnamed-chunk-59" width="55%" style="display: block; margin: auto;" /></p>
 
   </article>
   <!-- Presenter Notes -->
@@ -985,7 +985,7 @@ FFTrees(formula = diagnosis ~.,
     <h3>Forest Fires (Testing)</h3>
   </hgroup>
   <article data-timings="">
-    <p><img src="figure/unnamed-chunk-58-1.png" title="plot of chunk unnamed-chunk-58" alt="plot of chunk unnamed-chunk-58" width="55%" style="display: block; margin: auto;" /></p>
+    <p><img src="figure/unnamed-chunk-60-1.png" title="plot of chunk unnamed-chunk-60" alt="plot of chunk unnamed-chunk-60" width="55%" style="display: block; margin: auto;" /></p>
 
   </article>
   <!-- Presenter Notes -->
@@ -1016,7 +1016,7 @@ FFTrees(formula = diagnosis ~.,
 
 </div>
 <div style='float:right;width:48%;'>
-  <p><img src="figure/unnamed-chunk-60-1.png" title="plot of chunk unnamed-chunk-60" alt="plot of chunk unnamed-chunk-60" width="80%" style="display: block; margin: auto;" /></p>
+  <p><img src="figure/unnamed-chunk-62-1.png" title="plot of chunk unnamed-chunk-62" alt="plot of chunk unnamed-chunk-62" width="80%" style="display: block; margin: auto;" /></p>
 
 </div>
   </article>
@@ -1031,7 +1031,7 @@ FFTrees(formula = diagnosis ~.,
     <pre><code class="r">heart.fff &lt;- FFForest(formula = diagnosis ~., data = heartdisease)
 </code></pre>
 
-<p><img src="figure/unnamed-chunk-62-1.png" title="plot of chunk unnamed-chunk-62" alt="plot of chunk unnamed-chunk-62" width="90%" style="display: block; margin: auto;" /></p>
+<p><img src="figure/unnamed-chunk-64-1.png" title="plot of chunk unnamed-chunk-64" alt="plot of chunk unnamed-chunk-64" width="90%" style="display: block; margin: auto;" /></p>
 
   </article>
   <!-- Presenter Notes -->
@@ -1169,13 +1169,13 @@ FFTrees(formula = diagnosis ~.,
     </li>
     <li>
       <a href="#" target="_self" rel='tooltip' 
-        data-slide=22 title='Training (balanced) accuracy (10 datasets)'>
+        data-slide=22 title='Training (all datasets)'>
          22
       </a>
     </li>
     <li>
       <a href="#" target="_self" rel='tooltip' 
-        data-slide=23 title='Testing (balanced) accuracy (10 datasets)'>
+        data-slide=23 title='Testing (all datasets)'>
          23
       </a>
     </li>
