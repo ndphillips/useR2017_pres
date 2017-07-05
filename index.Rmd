@@ -17,6 +17,11 @@ knit        : slidify::knit2slides
 ---  .nobackground
 
 
+<q>How can people make good decisions based on limited, noisy information?</q>
+
+
+---  .nobackground
+
 ### Limited Time. Limited information. How can one make good decisions?
 
 <br>
@@ -27,10 +32,6 @@ knitr::include_graphics(c("images/threeexamples.png"))
 ```
 
 
-
-
-
----&twocol .nobackground
 
 ```{r, echo = FALSE, message = FALSE}
 library(FFTrees)
@@ -75,17 +76,21 @@ cart.loc <- c(27, 72)
 ```
 
 
-## Cook County Hospital, 1996
 
-***=left
-```{r, fig.margin = TRUE, echo = FALSE, eval = TRUE, out.width = "100%", fig.align='center'}
-knitr::include_graphics(c("images/crowdedemergency.jpg"))
-```
-
-***=right
+<!-- ---&twocol .nobackground -->
 
 
-"As the city’s principal public hospital, Cook County was the place of last resort for the hundreds of thousands of Chicagoans without health insurance. Resources were stretched to the limit. The hospital’s cavernous wards were built for another century. There were no private rooms, and patients were separated by flimsy plywood dividers. [\...] Doctors once trained a homeless man to do routine lab tests because there was no one else available." Malcolm Gladwell, Blink.
+<!-- ## Cook County Hospital, 1996 -->
+
+<!-- ***=left -->
+<!-- ```{r, fig.margin = TRUE, echo = FALSE, eval = TRUE, out.width = "100%", fig.align='center'} -->
+<!-- knitr::include_graphics(c("images/crowdedemergency.jpg")) -->
+<!-- ``` -->
+
+<!-- ***=right -->
+
+
+<!-- "As the city’s principal public hospital, Cook County was the place of last resort for the hundreds of thousands of Chicagoans without health insurance. Resources were stretched to the limit. The hospital’s cavernous wards were built for another century. There were no private rooms, and patients were separated by flimsy plywood dividers. [\...] Doctors once trained a homeless man to do routine lab tests because there was no one else available." Malcolm Gladwell, Blink. -->
 
 
 
@@ -199,9 +204,7 @@ knitr::include_graphics(c("images/FFTexamples.png"))
 
 ***=left
 
-
-- `FFTrees` An easy-to-use R package to create, visualize, and evaluate fast-and-frugal decision trees.
-
+- A package to create, visualize, and evaluate *dead-simple* fast-and-frugal decision trees.
 
 ```{r, eval = FALSE}
 install.packages("FFTrees")
@@ -239,16 +242,14 @@ knitr::kable(head(heartdisease))
 
 ---
 
-## 3 Steps to creating FFTs with FFTrees
+## The FFTrees() function
 
 ```{r, eval = FALSE}
-# Step 0: Install FFTrees (v.1.3.2)
+# Step 1: Install and load FFTrees (v.1.3.2)
 install.packages("FFTrees")
-
-# Step 1: Load the package
 library("FFTrees")
 
-# Step 2: Create an fft decision model with FFTrees
+# Step 2: Create FFTs
 heart.fft <- FFTrees(formula = diagnosis ~.,
                      data = heart.train,
                      data.test = heart.test,
@@ -600,17 +601,56 @@ plot(my.heart.fft, stats = TRUE)
 ```
 
 
+
 ---&twocol
 ### Include cue costs
 
 ***=left
-`heart.cost`
-```{r, echo = FALSE}
-knitr::kable(heart.cost[c(13, 3, 12, 4),], row.names = FALSE)
+
+
+```{r, echo = FALSE, fig.width = 6, fig.height = 5, out.width = "100%"}
+my.costs <- heart.cost[heart.cost$cue %in% c("thal", "cp", "ca", "chol", "slope", "trestbps"),]
+
+yarrr::pirateplot(cost ~ cue, data = my.costs, bar.f.o = .5, 
+                  avg.line.o = 0, point.o = 0, sortx = "s", 
+                  bty = "n", xlab = "", main = "Cue Costs")
+text(1:nrow(my.costs), my.costs$cost + 3, labels = my.costs$cost)
+
+
 ```
 
 ```{r, eval = FALSE}
-# Original FFT (without costs)
+FFTrees(formula = diagnosis ~.,
+ data = heart.train)
+```
+
+
+***=right
+
+
+---&twocol
+### Include cue costs
+
+***=left
+
+
+```{r, echo = FALSE, fig.width = 6, fig.height = 5, out.width = "100%"}
+my.costs <- heart.cost[heart.cost$cue %in% c("thal", "cp", "ca", "chol", "slope", "trestbps"),]
+
+yarrr::pirateplot(cost ~ cue, data = my.costs, bar.f.o = .5, 
+                  avg.line.o = 0, point.o = 0, sortx = "s", 
+                  bty = "n", xlab = "", main = "Cue Costs")
+text(1:nrow(my.costs), my.costs$cost + 3, labels = my.costs$cost)
+
+par(xpd = TRUE)
+
+points(c(6, 1, 5), rep(-16, 3), cex = 5, lwd = 2)
+
+par(xpd = FALSE)
+
+```
+
+```{r, eval = FALSE}
 FFTrees(formula = diagnosis ~.,
  data = heart.train)
 ```
@@ -629,15 +669,30 @@ plot(heart.fft)
 ### Include cue costs
 
 ***=left
-`heart.cost`
-```{r, echo = FALSE}
-knitr::kable(heart.cost[c(2, 13, 3, 12, 4),])
+
+
+```{r, echo = FALSE, fig.width = 6, fig.height = 5, out.width = "100%"}
+my.costs <- heart.cost[heart.cost$cue %in% c("thal", "cp", "ca", "chol", "slope", "trestbps"),]
+
+yarrr::pirateplot(cost ~ cue, data = my.costs, bar.f.o = .5, 
+                  avg.line.o = 0, point.o = 0, sortx = "s", 
+                  bty = "n", xlab = "", main = "Cue Costs")
+text(1:nrow(my.costs), my.costs$cost + 3, labels = my.costs$cost)
+
+
+par(xpd = TRUE)
+
+points(c(1), rep(-16, 1), cex = 5, lwd = 2)
+
+rect(1.5, -24, 2.5, -10, lwd = 2)
+
+par(xpd = FALSE)
+
 ```
 
+
 ```{r, eval = FALSE}
-# Create an FFT that is cheap
-FFTrees(formula = diagnosis ~.,
- data = heart.train,
+FFTrees(formula, data,
  cost.cues = heart.cost,
  cost.outcomes = c(0, 200, 100, 0))
 ```
@@ -667,12 +722,12 @@ plot(heart.cost.fft)
 
 ---
 
-### When should I consider an FFT?
+<q>When should I consider an FFT?</q>
 
+- You (or your clients)
 
 --- .nobackground
-
-### When should I consider an FFT?
+## Meta FFT
 
 ```{r , fig.margin = TRUE, echo = FALSE, out.width = "70%", fig.align='center'}
 knitr::include_graphics(c("images/considerFFT.jpg"))
@@ -687,7 +742,7 @@ knitr::include_graphics(c("images/considerFFT.jpg"))
 
 ### Publication
 
-FFTrees: A toolbox to create, visualize and evaluate fast-and-frugal decision trees. *Judgment and Decision Making*.
+FFTrees: A toolbox to create, visualize and evaluate fast-and-frugal decision trees. (in press). *Judgment and Decision Making*.
 
 ### Collaborators
 
@@ -706,10 +761,8 @@ knitr::include_graphics(c("images/collaborators.png"))
 
 --- .class #id 
 
-## FFTrees
 
-
-```{r , fig.margin = TRUE, echo = FALSE, out.width = "20%", fig.align='center', message = FALSE, echo = FALSE}
+```{r , fig.margin = TRUE, echo = FALSE, out.width = "30%", fig.align='center', message = FALSE, echo = FALSE}
  knitr::include_graphics(c("images/FFTrees_Logo.jpg"))
 ```
 
@@ -722,9 +775,9 @@ FFTrees_guide()               # Open the main package guide
 ```
 
 
-- Github: [http://www.github.com/ndphillips/FFTrees](http://www.github.com/ndphillips/FFTrees)
-- This presentation: [https://github.com/ndphillips/useR2017_pres](https://github.com/ndphillips/useR2017_pres)
-- Website: https://ndphillips.github.io
+- Github Repository: [http://www.github.com/ndphillips/FFTrees](http://www.github.com/ndphillips/FFTrees)
+- This presentation: [https://ndphillips.github.io/useR2017_pres/](https://ndphillips.github.io/useR2017_pres/)
+- Website: [https://ndphillips.github.io](https://ndphillips.github.io)
 - Email: Nathaniel.D.Phillips.is@gmail.com
 
 
