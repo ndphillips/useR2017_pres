@@ -204,7 +204,7 @@ knitr::include_graphics(c("images/FFTexamples.png"))
 
 ***=left
 
-- A package to create, visualize, and evaluate *dead-simple* fast-and-frugal decision trees.
+- A package to create, visualize, and evaluate (*dead-simple*) fast-and-frugal decision trees.
 
 ```{r, eval = FALSE}
 install.packages("FFTrees")
@@ -237,22 +237,8 @@ library(FFTrees)
 knitr::kable(head(heartdisease))
 ```
 
-- Goal: Predict diagnosis as a function of cues.
 
----
-## Cue importance
-
-- As calculated by `randomForest`
-
-```{r, echo = FALSE, fig.width = 10, fig.height = 6, out.width = "80%"}
-heart.importance <- heart.fft$comp$rf$model$importance
-heart.importance <- data.frame(cue = rownames(heart.fft$comp$rf$model$importance), 
-                               importance = heart.importance[,1])
-
-heart.importance <- heart.importance[order(heart.importance$importance),]
-yarrr::pirateplot(formula = importance ~ cue, data = heart.importance, sortx = "s", bar.f.o = .5, bar.f.col = "blue")
-```
-
+### Goal: Predict binary diagnosis classification
 
 
 
@@ -365,13 +351,12 @@ plot(heart.fft, data = "test", tree = 7)   # Testing data, tree 7
 
 ## Prediction Simulation
 
-- The `FFTrees` package can be used with any dataset with a binary criterion.
-- Simulation
-    - 10 diverse datasets taken from the UCI Machine Learning Database.
-    - 50\% Training, 50\% Testing (results very similar for 10-fold cross validation)
-    - FFtrees vs rpart, regression, random forests...
+
+- 10 datasets from the UCI Machine Learning Database.
+- 50\% Training, 50\% Testing
+- FFtrees vs rpart, regression, random forests...
 - Criterion: Balanced accuracy
-    - (mean(sensitivity, specificity))
+    - `mean(sensitivity, specificity)`
 
 ***=right
 
@@ -573,13 +558,6 @@ knitr::include_graphics(c("images/FFTrees_Tutorial_SS.png"))
 
 
 
----
-
-```{r, fig.align = 'center', echo = TRUE, out.width = "60%"}
-plot(heart.fft, what = "cues")
-```
-
-
 
 ---&twocol
 
@@ -624,6 +602,9 @@ plot(my.heart.fft, stats = TRUE)
 ```{r, echo = FALSE, fig.width = 6, fig.height = 5, out.width = "100%"}
 my.costs <- heart.cost[heart.cost$cue %in% c("thal", "cp", "ca", "chol", "slope", "trestbps"),]
 
+my.costs <- my.costs[order(my.costs$cost, decreasing = TRUE),]
+
+
 yarrr::pirateplot(cost ~ cue, data = my.costs, bar.f.o = .5, 
                   avg.line.o = 0, point.o = 0, sortx = "s", 
                   bty = "n", xlab = "", main = "Cue Costs")
@@ -650,6 +631,10 @@ FFTrees(formula = diagnosis ~.,
 ```{r, echo = FALSE, fig.width = 6, fig.height = 5, out.width = "100%"}
 my.costs <- heart.cost[heart.cost$cue %in% c("thal", "cp", "ca", "chol", "slope", "trestbps"),]
 
+
+my.costs <- my.costs[order(my.costs$cost, decreasing = TRUE),]
+
+
 yarrr::pirateplot(cost ~ cue, data = my.costs, bar.f.o = .5, 
                   avg.line.o = 0, point.o = 0, sortx = "s", 
                   bty = "n", xlab = "", main = "Cue Costs")
@@ -657,7 +642,7 @@ text(1:nrow(my.costs), my.costs$cost + 3, labels = my.costs$cost)
 
 par(xpd = TRUE)
 
-points(c(6, 1, 5), rep(-16, 3), cex = 5, lwd = 2)
+points(c(1, 2, 5), rep(-16, 3), cex = 5, lwd = 2)
 
 par(xpd = FALSE)
 
@@ -671,7 +656,7 @@ FFTrees(formula = diagnosis ~.,
 
 ***=right
 
-### Original FFT (without costs)
+**Original FFT**: Cost = $120, Accuracy = 80%
 
 ```{r, out.width = "100%", echo = FALSE}
 plot(heart.fft)
@@ -687,6 +672,9 @@ plot(heart.fft)
 ```{r, echo = FALSE, fig.width = 6, fig.height = 5, out.width = "100%"}
 my.costs <- heart.cost[heart.cost$cue %in% c("thal", "cp", "ca", "chol", "slope", "trestbps"),]
 
+my.costs <- my.costs[order(my.costs$cost, decreasing = TRUE),]
+
+
 yarrr::pirateplot(cost ~ cue, data = my.costs, bar.f.o = .5, 
                   avg.line.o = 0, point.o = 0, sortx = "s", 
                   bty = "n", xlab = "", main = "Cue Costs")
@@ -695,9 +683,9 @@ text(1:nrow(my.costs), my.costs$cost + 3, labels = my.costs$cost)
 
 par(xpd = TRUE)
 
-points(c(1), rep(-16, 1), cex = 5, lwd = 2)
+points(c(5), rep(-16, 1), cex = 5, lwd = 2)
 
-rect(1.5, -24, 2.5, -10, lwd = 2)
+rect(5.5, -24, 6.5, -10, lwd = 2)
 
 par(xpd = FALSE)
 
@@ -725,8 +713,7 @@ heart.cost.fft <- FFTrees(formula = diagnosis ~.,
         decision.labels = c("Standard", "ICU"))
 ```
 
-### Cheap FFT
-
+**Cheap FFT**: Cost = $1.56, Accuracy = 75%
 
 ```{r, out.width = "100%", echo = FALSE}
 plot(heart.cost.fft)
@@ -885,6 +872,28 @@ points(0, 0, cex = 4, pch = 21, bg = "white", col = "black")
 text(0, 0, labels = "C")
 ```
 
+
+
+---
+
+```{r, fig.align = 'center', echo = TRUE, out.width = "60%"}
+plot(heart.fft, what = "cues")
+```
+
+
+---
+## Cue importance
+
+- As calculated by `randomForest`
+
+```{r, echo = FALSE, fig.width = 10, fig.height = 6, out.width = "80%"}
+heart.importance <- heart.fft$comp$rf$model$importance
+heart.importance <- data.frame(cue = rownames(heart.fft$comp$rf$model$importance), 
+                               importance = heart.importance[,1])
+
+heart.importance <- heart.importance[order(heart.importance$importance),]
+yarrr::pirateplot(formula = importance ~ cue, data = heart.importance, sortx = "s", bar.f.o = .5, bar.f.col = "blue")
+```
 
 
 
