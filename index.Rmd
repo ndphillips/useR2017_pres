@@ -608,8 +608,9 @@ my.costs <- my.costs[order(my.costs$cost, decreasing = TRUE),]
 yarrr::pirateplot(cost ~ cue, data = my.costs, bar.f.o = .5, 
                   avg.line.o = 0, point.o = 0, sortx = "s", 
                   bty = "n", xlab = "", main = "Cue Costs")
-text(1:nrow(my.costs), my.costs$cost + 3, labels = my.costs$cost)
-
+text(1:nrow(my.costs), 
+     my.costs$cost + 3, 
+     labels = paste0("$", my.costs$cost))
 
 ```
 
@@ -638,7 +639,9 @@ my.costs <- my.costs[order(my.costs$cost, decreasing = TRUE),]
 yarrr::pirateplot(cost ~ cue, data = my.costs, bar.f.o = .5, 
                   avg.line.o = 0, point.o = 0, sortx = "s", 
                   bty = "n", xlab = "", main = "Cue Costs")
-text(1:nrow(my.costs), my.costs$cost + 3, labels = my.costs$cost)
+text(1:nrow(my.costs), 
+     my.costs$cost + 3, 
+     labels = paste0("$", my.costs$cost))
 
 par(xpd = TRUE)
 
@@ -678,7 +681,9 @@ my.costs <- my.costs[order(my.costs$cost, decreasing = TRUE),]
 yarrr::pirateplot(cost ~ cue, data = my.costs, bar.f.o = .5, 
                   avg.line.o = 0, point.o = 0, sortx = "s", 
                   bty = "n", xlab = "", main = "Cue Costs")
-text(1:nrow(my.costs), my.costs$cost + 3, labels = my.costs$cost)
+text(1:nrow(my.costs), 
+     my.costs$cost + 3, 
+     labels = paste0("$", my.costs$cost))
 
 
 par(xpd = TRUE)
