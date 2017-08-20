@@ -1,8 +1,8 @@
 ---
 title       : FFTrees
-subtitle    : An R package to create, visualize, and evaluate fast-and-frugal decision trees
+subtitle    : An R package to create, visualize, and evaluate fast-and-frugal decision trees.......Or, how I learned to stop worrying and love heuristics.
 author      : Nathaniel Phillips, Economic Psychology, University of Basel, Switzerland
-job         : useR! 2017, Brussels
+job         : SPUDM 2017, Haifa, Israel
 framework   : io2012        # {io2012, html5slides, shower, dzslides, ...}
 highlighter : highlight.js  # {highlight.js, prettify, highlight}
 hitheme     : tomorrow      # 
@@ -12,17 +12,12 @@ knit        : slidify::knit2slides
 ---
 
 
-
-
----  .nobackground
-
-
 <q>How can people make good decisions based on limited, noisy information?</q>
 
 
 ---  .nobackground
 
-### Limited Time. Limited information. How can one make good decisions?
+## Limited Time. Limited information.
 
 <br>
 
@@ -33,7 +28,7 @@ knitr::include_graphics(c("images/threeexamples.png"))
 
 
 
-```{r, echo = FALSE, message = FALSE}
+```{r, echo = FALSE, message = FALSE, results='hide'}
 library(FFTrees)
 load("data/UZurich.RData")
 load("data/useR.RData")
@@ -66,6 +61,8 @@ line.fun <- function(alpha,
 
 linear <- function(x) {line.fun(alpha = 1, x = x, x1 = 0, y1 = 0, x2 = 100, y2 = 80)}
 slow <- function(x) {line.fun(alpha = .5, x = x, x1 = 0, y1 = 0, x2 = 100, y2 = 80)}
+medium <- function(x) {line.fun(alpha = .75, x = x, x1 = 0, y1 = 0, x2 = 100, y2 = 80)}
+
 fast <- function(x) {line.fun(alpha = .1, x = x, x1 = 0, y1 = 0, x2 = 100, y2 = 80)}
 
 
@@ -163,7 +160,7 @@ knitr::include_graphics(c("images/complexvsimple.png"))
 
 
 ---
-# Examples of FFTs
+## Examples of FFTs
 
 
 ```{r , fig.margin = TRUE, echo = FALSE, out.width = "100%", fig.align='center', message = FALSE, echo = FALSE}
@@ -172,49 +169,59 @@ knitr::include_graphics(c("images/FFTexamples.png"))
 
 
 
-
-
 ---&twocol
-###  Why an FFT?
+## But how can I create FFTs?
+
+***=left
+
+- Need an algorithm (and preferably software)
+
+| | Algorithms|Software |
+|------:|----:|:-----|:----|
+|     Standard Decision Trees|  CART, CHAID|SPSS, Excel, R, Matlab, ...     |
+|     Fast-and-Frugal Trees (FFTs)|    Max, Zig-zag (Martignon et al., 2003; 2008)|?     |
+
+- *Missing*: An easy to use toolbox that creates and visualizes FFTs based on data.
 
 
-<q>No more entities should be presumed to exist than are absolutely necessary</q> Willam of Occam
+- *Answer*: FFTrees
 
+***=right
 
-
-```{r , fig.margin = TRUE, echo = FALSE, out.width = "50%", fig.align='center', message = FALSE, echo = FALSE}
- knitr::include_graphics(c("images/occam.jpg"))
+```{r , fig.margin = TRUE, echo = FALSE, out.width = "100%", fig.align='center', message = FALSE, echo = FALSE}
+knitr::include_graphics(c("images/spssdecisiontrees_ss.png"))
 ```
 
-<!-- ---&twocol -->
-<!-- ###  Why an FFT? -->
+*If you don't like things for free (R), you can pay IBM SPSS $680 / year to make standard decision trees.*
+
+```{r , fig.margin = TRUE, echo = FALSE, out.width = "100%", fig.align='center', message = FALSE, echo = FALSE}
+knitr::include_graphics(c("images/martignon2008_ss.png"))
+```
 
 
-
-
-
-<!-- <q>If a decision tree that measures up very well on the performance criterion is nevertheless totally incomprehensible to a human expert, can it be described as *knowledge?* Under the common-sense definition of this term [...] it is not." </q> (Quinlan, 1999) -->
-
-
-
-
+Martignon, Katsikopoulos & Woike (2008)
 
 ---&twocol
 ## FFTrees
 
 ***=left
 
-- A package to create, visualize, and evaluate (*dead-simple*) fast-and-frugal decision trees.
+- A package to create, visualize, and evaluate fast-and-frugal decision trees.
+- Minimal programming, extensive examples and guides, informative visualizations. 
 
 ```{r, eval = FALSE}
-install.packages("FFTrees")
-library("FFTrees")
-    a      
+# 3 Steps to getting started
+
+install.packages("FFTrees") # Install
+library("FFTrees")          # Load 
+FFTrees_guide()             # Open guide
+
+    0      
    / \     
-0   b  
+F   0  
      / \   
-    0   1  
- FFTrees v1.3.2
+    F   T  
+ FFTrees v1.3.3
 ```
 
 
@@ -224,6 +231,15 @@ library("FFTrees")
 
 ```{r , fig.margin = TRUE, echo = FALSE, out.width = "80%", fig.align='center', message = FALSE, echo = FALSE}
  knitr::include_graphics(c("images/FFTrees_Logo.jpg"))
+```
+
+
+
+---
+## Tutorial and Documentation
+
+```{r, fig.margin = TRUE, echo = FALSE, eval = TRUE, out.width = "90%", fig.align='center'}
+knitr::include_graphics(c("images/FFTrees_Tutorial_SS.png"))
 ```
 
 
@@ -252,10 +268,10 @@ install.packages("FFTrees")
 library("FFTrees")
 
 # Step 2: Create FFTs
-heart.fft <- FFTrees(formula = diagnosis ~.,
-                     data = heart.train,
-                     data.test = heart.test,
-                     main = "Heart Disease",
+heart.fft <- FFTrees(formula = diagnosis ~.,  # Formula
+                     data = heart.train,      # Training data
+                     data.test = heart.test,  # Test data
+                     main = "Heart Disease",  # Optional labels
                      decision.labels = c("Low-Risk", "High-Risk"))
 ```
 
@@ -344,6 +360,10 @@ plot(heart.fft, data = "test", tree = 7)   # Testing data, tree 7
 
 
 
+---
+
+<q>How well can simple FFTs compete with classical rational models and cutting-edge machine learning algorithms?</q>
+
 
 ---&twocol
 
@@ -353,8 +373,8 @@ plot(heart.fft, data = "test", tree = 7)   # Testing data, tree 7
 
 
 - 10 datasets from the UCI Machine Learning Database.
-- 50\% Training, 50\% Testing
-- FFtrees vs rpart, regression, random forests...
+- 50% Training, 50% Testing
+- FFTrees vs rpart, regression, random forests...
 - Criterion: Balanced accuracy
     - `mean(sensitivity, specificity)`
 
@@ -366,6 +386,50 @@ knitr::include_graphics(c("images/datacollage.png"))
 
 
 
+
+---
+```{r out.width = "60%", echo = FALSE}
+plot(mushrooms.fft)
+```
+
+
+
+---
+```{r out.width = "60%", echo = FALSE}
+breast.fft <- FFTrees(diagnosis ~., data = breastcancer, main = "Breast Cancer", decision.labels = c("Healthy", "Cancer"))
+plot(breast.fft)
+```
+
+
+---
+```{r out.width = "60%", echo = FALSE}
+titanic.fft <- FFTrees(survived ~., data = titanic, main = "Titanic", decision.labels = c("Died", "Survived"))
+plot(titanic.fft)
+```
+
+
+
+---
+
+```{r out.width = "60%", echo = FALSE, message = FALSE, warning = FALSE}
+set.seed(100)
+forestfires$area <- forestfires$area > 0
+forest.fft <- FFTrees(area ~., data = forestfires, main = "Forest Fires", decision.labels = c("None", "Fire"), train.p = .5)
+plot(forest.fft, "train")
+```
+
+---
+
+```{r out.width = "60%", echo = FALSE}
+plot(forest.fft, "test")
+```
+
+
+---
+
+```{r out.width = "60%", echo = FALSE}
+plot(forest.fft, what = "cues")
+```
 
 
 
@@ -428,7 +492,7 @@ segments(mcu, pci, rep(7.5, length(data.name)), seq(.1, .9, length.out = length(
 
 
 --- .class #id 
-## Training Balanced Accuracy (all datasets)
+## Fitting Accuracy
 
 ```{r , fig.margin = TRUE, echo = FALSE, out.width = "80%", fig.align='center', fig.width = 8, fig.height = 6}
 {
@@ -473,7 +537,7 @@ abline(h = .865, lty = 2, lwd = 1.5)
 
 
 --- .class #id 
-## Testing Balanced Accuracy (all datasets)
+## Prediction Accuracy
 
 ```{r , fig.margin = TRUE, echo = FALSE, out.width = "80%", fig.align='center', fig.width = 8, fig.height = 6}
 {
@@ -525,216 +589,234 @@ knitr::include_graphics(c("images/MLR_Simulation_Trees.jpg"))
 
 
 
----
-```{r out.width = "60%", echo = FALSE}
-plot(mushrooms.fft)
-```
+
+
+
+
+
+<!-- ---&twocol -->
+
+<!-- ***=left -->
+<!-- ## Define an FFT manually -->
+
+<!-- ```{r, eval = FALSE, message = FALSE} -->
+<!-- # Create an FFT manually -->
+<!-- FFTrees(formula = diagnosis ~., -->
+<!-- data = heart.train, -->
+<!-- my.tree = "If chol > 350, predict True.  -->
+<!--            If cp != {a}, predict False.  -->
+<!--            If age <= 35, predict False. -->
+<!--            Otherwise, predict True") -->
+<!-- ``` -->
+
+
+<!-- ```{r, echo = FALSE} -->
+<!-- # Create an FFT manually -->
+<!-- my.heart.fft <- FFTrees(formula = diagnosis ~., -->
+<!--         data = heart.train, -->
+<!--         my.tree = "If chol > 350, predict True.  -->
+<!--                    If cp != {a}, predict False.  -->
+<!--                    If age <= 35, predict False. -->
+<!--                    Otherwise, predict True") -->
+<!-- ``` -->
+
+<!-- ***=right -->
+
+<!-- ```{r, out.width = "100%", echo = FALSE} -->
+<!-- plot(my.heart.fft, stats = TRUE) -->
+<!-- ``` -->
 
 
 
 ---
-```{r out.width = "60%", echo = FALSE}
-breast.fft <- FFTrees(diagnosis ~., data = breastcancer, main = "Breast Cancer", decision.labels = c("Healthy", "Cancer"))
-plot(breast.fft)
+## ShinyFFTrees
+
+- A point-and click (no programming), web-based version of FFTrees with around 90% of the funcionality of FFTrees
+- Demo: http://econpsychbasel.shinyapps.io/ShinyFFTrees/
+
+```{r , fig.margin = TRUE, echo = FALSE, out.width = "60%", fig.align='center'}
+knitr::include_graphics(c("images/shinyfftrees_ss.png"))
 ```
+
+
 
 
 ---
-```{r out.width = "60%", echo = FALSE}
-titanic.fft <- FFTrees(survived ~., data = titanic, main = "Titanic", decision.labels = c("Died", "Survived"))
-plot(titanic.fft)
+
+```{r, echo = FALSE, out.width = "90%", fig.width = 7, fig.height = 5}
+linear <- function(x) {line.fun(alpha = 1, x = x, x1 = 0, y1 = 0, x2 = 100, y2 = 80)}
+slow <- function(x) {line.fun(alpha = .5, x = x, x1 = 0, y1 = 0, x2 = 100, y2 = 80)}
+medium <- function(x) {line.fun(alpha = .1, x = x, x1 = 0, y1 = 0, x2 = 100, y2 = 80)}
+fast <- function(x) {line.fun(alpha = .1, x = x, x1 = 0, y1 = 0, x2 = 100, y2 = 80)}
+
+
+plot(1, xlim = c(0, 100), ylim = c(0, 100), type = "n", 
+     xlab = "Complexity\n1 - Simplicity", ylab = "Accuracy", main = "What I used to think", bty = "n")
+grid()
+
+
+
 ```
+
+
 
 
 ---
 
-### Additional features
+```{r, echo = FALSE, out.width = "90%", fig.width = 7, fig.height = 5}
+linear <- function(x) {line.fun(alpha = 1, x = x, x1 = 0, y1 = 0, x2 = 100, y2 = 80)}
+slow <- function(x) {line.fun(alpha = .5, x = x, x1 = 0, y1 = 0, x2 = 100, y2 = 80)}
+medium <- function(x) {line.fun(alpha = .1, x = x, x1 = 0, y1 = 0, x2 = 100, y2 = 80)}
+fast <- function(x) {line.fun(alpha = .1, x = x, x1 = 0, y1 = 0, x2 = 100, y2 = 80)}
 
-```{r, fig.margin = TRUE, echo = FALSE, eval = TRUE, out.width = "90%", fig.align='center'}
-knitr::include_graphics(c("images/FFTrees_Tutorial_SS.png"))
-```
 
+plot(1, xlim = c(0, 100), ylim = c(0, 100), type = "n", 
+     xlab = "Complexity\n1 - Simplicity", ylab = "Accuracy", main = "What I used to think", bty = "n")
+grid()
 
+curve(slow, from = 0, to = 100, ylim = c(0, 100), xlim = c(0, 100), add = TRUE,lwd= 5, 
+      col = yarrr::transparent("blue", .3))
 
+legend("bottomright", 
+       legend = c("Accuracy", "Costs", "Net"), 
+       col = c("blue", "red", "forestgreen"), 
+       lty = 1, lwd = 2)
 
 
+points(80, 70, cex = 14, pch = 21, bg = "white")
+text(80, 70, labels = "Complex")
 
----&twocol
+points(10, 20, cex = 14, pch = 21, bg = "white")
+text(10, 20, labels = "Simple")
 
-***=left
-### Define an FFT manually
+text(30, 50, "Accuracy", cex = 1, font = 3, srt = 20)
 
-```{r, eval = FALSE, message = FALSE}
-# Create an FFT manually
-FFTrees(formula = diagnosis ~.,
-data = heart.train,
-my.tree = "If chol > 350, predict True. 
-           If cp != {a}, predict False. 
-           If age <= 35, predict False.
-           Otherwise, predict True")
-```
 
 
-```{r, echo = FALSE}
-# Create an FFT manually
-my.heart.fft <- FFTrees(formula = diagnosis ~.,
-        data = heart.train,
-        my.tree = "If chol > 350, predict True. 
-                   If cp != {a}, predict False. 
-                   If age <= 35, predict False.
-                   Otherwise, predict True")
-```
-
-***=right
-
-```{r, out.width = "100%", echo = FALSE}
-plot(my.heart.fft, stats = TRUE)
-```
-
-
-
----&twocol
-### Include cue costs
-
-***=left
-
-
-```{r, echo = FALSE, fig.width = 6, fig.height = 5, out.width = "100%"}
-my.costs <- heart.cost[heart.cost$cue %in% c("thal", "cp", "ca", "chol", "slope", "trestbps"),]
-
-my.costs <- my.costs[order(my.costs$cost, decreasing = TRUE),]
-
-
-yarrr::pirateplot(cost ~ cue, data = my.costs, bar.f.o = .5, 
-                  avg.line.o = 0, point.o = 0, sortx = "s", 
-                  bty = "n", xlab = "", main = "Cue Costs")
-text(1:nrow(my.costs), 
-     my.costs$cost + 3, 
-     labels = paste0("$", my.costs$cost))
-
-```
-
-```{r, eval = FALSE}
-FFTrees(formula = diagnosis ~.,
- data = heart.train)
-```
-
-
-***=right
-
-
----&twocol
-### Include cue costs
-
-***=left
-
-
-```{r, echo = FALSE, fig.width = 6, fig.height = 5, out.width = "100%"}
-my.costs <- heart.cost[heart.cost$cue %in% c("thal", "cp", "ca", "chol", "slope", "trestbps"),]
-
-
-my.costs <- my.costs[order(my.costs$cost, decreasing = TRUE),]
-
-
-yarrr::pirateplot(cost ~ cue, data = my.costs, bar.f.o = .5, 
-                  avg.line.o = 0, point.o = 0, sortx = "s", 
-                  bty = "n", xlab = "", main = "Cue Costs")
-text(1:nrow(my.costs), 
-     my.costs$cost + 3, 
-     labels = paste0("$", my.costs$cost))
-
-par(xpd = TRUE)
-
-points(c(1, 2, 5), rep(-16, 3), cex = 5, lwd = 2)
-
-par(xpd = FALSE)
-
-```
-
-```{r, eval = FALSE}
-FFTrees(formula = diagnosis ~.,
- data = heart.train)
-```
-
-
-***=right
-
-**Original FFT**: Cost = $120, Accuracy = 80%
-
-```{r, out.width = "100%", echo = FALSE}
-plot(heart.fft)
-```
-
-
----&twocol
-### Include cue costs
-
-***=left
-
-
-```{r, echo = FALSE, fig.width = 6, fig.height = 5, out.width = "100%"}
-my.costs <- heart.cost[heart.cost$cue %in% c("thal", "cp", "ca", "chol", "slope", "trestbps"),]
-
-my.costs <- my.costs[order(my.costs$cost, decreasing = TRUE),]
-
-
-yarrr::pirateplot(cost ~ cue, data = my.costs, bar.f.o = .5, 
-                  avg.line.o = 0, point.o = 0, sortx = "s", 
-                  bty = "n", xlab = "", main = "Cue Costs")
-text(1:nrow(my.costs), 
-     my.costs$cost + 3, 
-     labels = paste0("$", my.costs$cost))
-
-
-par(xpd = TRUE)
-
-points(c(5), rep(-16, 1), cex = 5, lwd = 2)
-
-rect(5.5, -24, 6.5, -10, lwd = 2)
-
-par(xpd = FALSE)
-
-```
-
-
-```{r, eval = FALSE}
-FFTrees(formula, data,
- cost.cues = heart.cost,
- cost.outcomes = c(0, 200, 100, 0))
-```
-
-
-***=right
-
-```{r, eval = TRUE, message = FALSE, echo = FALSE}
-# Create an FFT that is cheap
-heart.cost.fft <- FFTrees(formula = diagnosis ~.,
-        data = heart.train,
-        cost.cues = heart.cost,
-        cost.outcomes = c(0, 200, 100, 0),
-        goal = "cost",
-        goal.chase = "cost",
-        main = "Heart w/ Cost",
-        decision.labels = c("Standard", "ICU"))
-```
-
-**Cheap FFT**: Cost = $1.56, Accuracy = 75%
-
-```{r, out.width = "100%", echo = FALSE}
-plot(heart.cost.fft)
 ```
 
 
 ---
 
-<q>When should I consider an FFT?</q>
+```{r, echo = FALSE, out.width = "90%", fig.width = 7, fig.height = 5}
+linear <- function(x) {line.fun(alpha = 1, x = x, x1 = 0, y1 = 0, x2 = 100, y2 = 80)}
+slow <- function(x) {line.fun(alpha = .5, x = x, x1 = 0, y1 = 0, x2 = 100, y2 = 80)}
+medium <- function(x) {line.fun(alpha = .1, x = x, x1 = 0, y1 = 0, x2 = 100, y2 = 80)}
+fast <- function(x) {line.fun(alpha = .1, x = x, x1 = 0, y1 = 0, x2 = 100, y2 = 80)}
 
---- .nobackground
-### When should I consider an FFT?
 
-```{r , fig.margin = TRUE, echo = FALSE, out.width = "70%", fig.align='center'}
-knitr::include_graphics(c("images/considerFFT.jpg"))
+plot(1, xlim = c(0, 100), ylim = c(0, 100), type = "n", 
+     xlab = "Complexity\n1 - Simplicity", ylab = "Accuracy", main = "What I think now", bty = "n")
+grid()
+
+curve(medium, from = 0, to = 100, ylim = c(0, 100), xlim = c(0, 100), add = TRUE,lwd= 5, 
+      col = yarrr::transparent("blue", .3))
+
+legend("bottomright", 
+       legend = c("Accuracy", "Costs", "Net"), 
+       col = c("blue", "red", "forestgreen"), 
+       lty = 1, lwd = 2)
+
+
+points(80, 80, cex = 14, pch = 21, bg = "white")
+text(80, 80, labels = "Complex")
+
+points(10, 65, cex = 14, pch = 21, bg = "white")
+text(10, 65, labels = "Simple")
+
+text(30, 75, "Accuracy", cex = 1, font = 3)
+
+
+
 ```
+
+
+
+
+
+
+---
+
+```{r, echo = FALSE, out.width = "90%", fig.width = 7, fig.height = 5}
+
+plot(1, xlim = c(0, 100), ylim = c(0, 100), type = "n", 
+     xlab = "Complexity\n1 - Simplicity", ylab = "Accuracy", main = "What I think now", bty = "n")
+grid()
+
+curve(medium, from = 0, to = 100, ylim = c(0, 100), xlim = c(0, 100), add = TRUE,lwd= 5, 
+      col = yarrr::transparent("blue", .3))
+
+cost.curve <- function(x) {x}
+
+curve(cost.curve, from = 0, to = 100, add = TRUE, 
+      col = yarrr::transparent("red", .3), lwd = 5)
+
+
+points(80, 80, cex = 14, pch = 21, bg = yarrr::transparent("white", .1))
+text(80, 80, labels = "Complex")
+
+points(10, 65, cex = 14, pch = 21, bg = yarrr::transparent("white", .1))
+
+text(10, 65, labels = "Simple")
+
+legend("bottomright", 
+       legend = c("Accuracy", "Costs", "Net"), 
+       col = c("blue", "red", "forestgreen"), 
+       lty = 1, lwd = 5)
+
+
+text(30, 75, "Accuracy", cex = 1, font = 3)
+text(30, 25, "Cost", cex = 1, font = 3, srt = 30)
+
+
+
+```
+
+
+
+---
+
+```{r, echo = FALSE, out.width = "90%", fig.width = 7, fig.height = 5}
+
+plot(1, xlim = c(0, 100), ylim = c(0, 100), type = "n", 
+     xlab = "Complexity\n1 - Simplicity", ylab = "Accuracy", main = "What I think now", bty = "n")
+grid()
+
+curve(medium, from = 0, to = 100, ylim = c(0, 100), xlim = c(0, 100), add = TRUE,lwd= 5, 
+      col = yarrr::transparent("blue", .3))
+
+cost.curve <- function(x) {x}
+
+curve(cost.curve, from = 0, to = 100, add = TRUE, 
+      col = yarrr::transparent("red", .3), lwd = 5)
+
+
+net.curve <- function(x) {medium(x) - x}
+curve(net.curve, from = 0, to = 100, add = TRUE, col = yarrr::transparent("forestgreen", .3), lwd = 5)
+
+
+points(80, 80, cex = 14, pch = 21, bg = yarrr::transparent("white", .1))
+text(80, 80, labels = "Complex")
+
+points(10, 65, cex = 14, pch = 21, bg = yarrr::transparent("white", .1))
+text(10, 65, labels = "Simple")
+
+text(30, 75, "Accuracy", cex = 1, font = 3)
+text(30, 25, "Cost", cex = 1, font = 3, srt = 30)
+
+text(28, 47, "Accuracy - Cost", cex = 1, font = 3, srt =335)
+
+legend("bottomright", 
+       legend = c("Accuracy", "Costs", "Net"), 
+       col = c("blue", "red", "forestgreen"), 
+       lty = 1, lwd = c(5, 5, 5))
+
+
+
+```
+
+
+
 
 
 
@@ -743,20 +825,20 @@ knitr::include_graphics(c("images/considerFFT.jpg"))
 
 ***=left
 
-### Publication
 
-FFTrees: A toolbox to create, visualize and evaluate fast-and-frugal decision trees. (in press). *Judgment and Decision Making*.
+FFTrees: A toolbox to create, visualize and evaluate fast-and-frugal decision trees. (2017). *Judgment and Decision Making*, 12(4), 344-368.
 
-### Collaborators
+```{r , fig.margin = TRUE, echo = FALSE, out.width = "90%", fig.align='center'}
+knitr::include_graphics(c("images/manuscriptss.png"))
+```
 
-- Wolfgang Gaissmaier (University of Konstanz)
-- Hansjoerg Neth  (University of Konstanz)
-- Jan Woike  (MPI for Human Development)
 
 ***=right
 
-```{r , fig.margin = TRUE, echo = FALSE, out.width = "90%", fig.align='center'}
-knitr::include_graphics(c("images/collaborators.png"))
+
+
+```{r , fig.margin = TRUE, echo = FALSE, out.width = "100%", fig.align='center'}
+knitr::include_graphics(c("images/fftreescoauthors.png"))
 ```
 
 
@@ -777,10 +859,10 @@ library("FFTrees")            # Load FFTrees
 FFTrees_guide()               # Open the main package guide
 ```
 
-
+- Manuscript: FFTrees: A toolbox to create, visualize and evaluate fast-and-frugal decision trees. *Judgment and Decision Making*
+- This presentation: [https://ndphillips.github.io/spudm2017haifa/](https://ndphillips.github.io/spudm2017haifa/)
 - Github Repository: [http://www.github.com/ndphillips/FFTrees](http://www.github.com/ndphillips/FFTrees)
-- This presentation: [https://ndphillips.github.io/useR2017_pres/](https://ndphillips.github.io/useR2017_pres/)
-- Website: [https://ndphillips.github.io](https://ndphillips.github.io)
+- ShinyFFTrees: [http://econpsychbasel.shinyapps.io/ShinyFFTrees/](http://econpsychbasel.shinyapps.io/ShinyFFTrees/)
 - Email: Nathaniel.D.Phillips.is@gmail.com
 
 
@@ -960,94 +1042,6 @@ knitr::include_graphics(c("images/roc.jpg"))
 
 
 ---
-### Conclusion
-
-
-
-```{r, echo = FALSE, out.width = "90%", fig.width = 10, fig.height = 6}
-plot(1, xlim = c(0, 100), ylim = c(0, 100), type = "n", 
-     xlab = "Complexity\n1 - Simplicity", ylab = "Accuracy", main = "Trade-off Between Complexity and Accuracy")
-grid()
-curve(slow, from = 0, to = 100, ylim = c(0, 100), xlim = c(0, 100), add = TRUE,lwd= 2)
-
-
-points(rf.loc1[1], rf.loc1[2], cex = 20, pch = 21, lwd = 3, bg = yarrr::transparent("white", .2))
-text(rf.loc1[1], rf.loc1[2] + 5, labels = "Random Forests", cex = .8, srt = 10)
-text(rf.loc1[1], rf.loc1[2] - 5, labels = "SVM", cex = 1.5)
-
-points(0, 0, cex = 1.5)
-text(10, 5, labels = "Random", cex = 1.5)
-```
-
-
---- .class #id 
-
-### Conclusion
-
-
-
-```{r,echo = FALSE, out.width = "90%", fig.width = 10, fig.height = 6}
-plot(1, xlim = c(0, 100), ylim = c(0, 100), type = "n", 
-     xlab = "Complexity\n1 - Simplicity", ylab = "Accuracy", main = "Trade-off Between Complexity and Accuracy")
-grid()
-
-
-curve(slow, from = 0, to = 100, ylim = c(0, 100), xlim = c(0, 100), add = TRUE, col = gray(.7), lwd = 2)
-curve(fast, from = 0, to = 100, ylim = c(0, 100), xlim = c(0, 100), add = TRUE, lwd = 2)
-
-points(rf.loc1[1], rf.loc1[2], cex = 20, lwd = 3, pch = 21, bg = yarrr::transparent("white", .20))
-text(rf.loc1[1], rf.loc1[2] + 5, labels = "Random Forests", cex = .8, srt = 10)
-text(rf.loc1[1], rf.loc1[2] - 5, labels = "SVM", cex = 1.5)
-
-points(0, 0, cex = 1.5)
-text(10, 5, labels = "Random", cex = 1.5)
-
-```
-
-
-
-
-
-
---- .class #id 
-
-### Conclusion
-
-
-
-```{r, echo = FALSE, out.width = "90%", fig.width = 10, fig.height = 6}
-plot(1, xlim = c(0, 100), ylim = c(0, 100), type = "n", 
-     xlab = "Complexity\n1 - Simplicity", ylab = "Accuracy", main = "Trade-off Between Complexity and Accuracy")
-grid()
-
-
-curve(slow, from = 0, to = 100, ylim = c(0, 100), xlim = c(0, 100), add = TRUE, col = gray(.7), lwd = 2)
-curve(fast, from = 0, to = 100, ylim = c(0, 100), xlim = c(0, 100), add = TRUE, lwd = 2)
-
-points(rf.loc1[1], rf.loc1[2], cex = 20, lwd = 3, pch = 21, bg = yarrr::transparent("white", .20))
-text(rf.loc1[1], rf.loc1[2] + 5, labels = "Random Forests", cex = .8, srt = 10)
-text(rf.loc1[1], rf.loc1[2] - 5, labels = "SVM", cex = 1.5)
-
-
-points(cart.loc[1], cart.loc[2], cex = 20, lwd = 3, pch = 21, bg = yarrr::transparent("white", .20))
-text(cart.loc[1]+2, cart.loc[2] + 5, labels = "CART", cex = 1.5, srt = 340)
-
-points(fft.loc[1], fft.loc[2], cex = 20, lwd = 3, pch = 21, bg = yarrr::transparent("white", .20))
-text(fft.loc[1], fft.loc[2] + 5, labels = "FFTrees", cex = 1.5)
-
-
-points(0, 0, cex = 1.5)
-text(10, 5, labels = "Random", cex = 1.5)
-
-
-
-
-
-```
-
-
-
----
 ### How accurate can FFTs be?
 
 
@@ -1084,32 +1078,6 @@ points(0, 0, cex = 1.5)
 text(10, 5, labels = "Random", cex = 1.5)
 ```
 
-
-
----
-### Forest Fires (Training)
-
-```{r out.width = "55%", echo = FALSE, message = FALSE, warning = FALSE}
-set.seed(100)
-forestfires$area <- forestfires$area > 0
-forest.fft <- FFTrees(area ~., data = forestfires, main = "Forest Fires", decision.labels = c("None", "Fire"), train.p = .5)
-plot(forest.fft, "train")
-```
-
----
-### Forest Fires (Testing)
-
-```{r out.width = "55%", echo = FALSE}
-plot(forest.fft, "test")
-```
-
-
----
-### Forest Fires (Testing)
-
-```{r out.width = "55%", echo = FALSE}
-plot(forest.fft, what = "cues")
-```
 
 
 

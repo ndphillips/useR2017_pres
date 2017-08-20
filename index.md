@@ -1,8 +1,8 @@
 ---
 title       : FFTrees
-subtitle    : An R package to create, visualize, and evaluate fast-and-frugal decision trees
+subtitle    : An R package to create, visualize, and evaluate fast-and-frugal decision trees.......Or, how I learned to stop worrying and love heuristics.
 author      : Nathaniel Phillips, Economic Psychology, University of Basel, Switzerland
-job         : useR! 2017, Brussels
+job         : SPUDM 2017, Haifa, Israel
 framework   : io2012        # {io2012, html5slides, shower, dzslides, ...}
 highlighter : highlight.js  # {highlight.js, prettify, highlight}
 hitheme     : tomorrow      # 
@@ -12,17 +12,12 @@ knit        : slidify::knit2slides
 ---
 
 
-
-
----  .nobackground
-
-
 <q>How can people make good decisions based on limited, noisy information?</q>
 
 
 ---  .nobackground
 
-### Limited Time. Limited information. How can one make good decisions?
+## Limited Time. Limited information.
 
 <br>
 
@@ -32,6 +27,9 @@ knit        : slidify::knit2slides
 
 
 
+```
+## Warning: package 'FFTrees' was built under R version 3.4.1
+```
 
 
 
@@ -114,55 +112,63 @@ Green & Mehr (1997) "What alters physicians' decisions to admit to the coronary 
 
 
 ---
-# Examples of FFTs
+## Examples of FFTs
 
 
 <img src="images/FFTexamples.png" title="plot of chunk unnamed-chunk-8" alt="plot of chunk unnamed-chunk-8" width="100%" style="display: block; margin: auto;" />
 
 
 
-
-
 ---&twocol
-###  Why an FFT?
+## But how can I create FFTs?
+
+***=left
+
+- Need an algorithm (and preferably software)
+
+| | Algorithms|Software |
+|------:|----:|:-----|:----|
+|     Standard Decision Trees|  CART, CHAID|SPSS, Excel, R, Matlab, ...     |
+|     Fast-and-Frugal Trees (FFTs)|    Max, Zig-zag (Martignon et al., 2003; 2008)|?     |
+
+- *Missing*: An easy to use toolbox that creates and visualizes FFTs based on data.
 
 
-<q>No more entities should be presumed to exist than are absolutely necessary</q> Willam of Occam
+- *Answer*: FFTrees
+
+***=right
+
+<img src="images/spssdecisiontrees_ss.png" title="plot of chunk unnamed-chunk-9" alt="plot of chunk unnamed-chunk-9" width="100%" style="display: block; margin: auto;" />
+
+*If you don't like things for free (R), you can pay IBM SPSS $680 / year to make standard decision trees.*
+
+<img src="images/martignon2008_ss.png" title="plot of chunk unnamed-chunk-10" alt="plot of chunk unnamed-chunk-10" width="100%" style="display: block; margin: auto;" />
 
 
-
-<img src="images/occam.jpg" title="plot of chunk unnamed-chunk-9" alt="plot of chunk unnamed-chunk-9" width="50%" style="display: block; margin: auto;" />
-
-<!-- ---&twocol -->
-<!-- ###  Why an FFT? -->
-
-
-
-
-
-<!-- <q>If a decision tree that measures up very well on the performance criterion is nevertheless totally incomprehensible to a human expert, can it be described as *knowledge?* Under the common-sense definition of this term [...] it is not." </q> (Quinlan, 1999) -->
-
-
-
-
+Martignon, Katsikopoulos & Woike (2008)
 
 ---&twocol
 ## FFTrees
 
 ***=left
 
-- A package to create, visualize, and evaluate (*dead-simple*) fast-and-frugal decision trees.
+- A package to create, visualize, and evaluate fast-and-frugal decision trees.
+- Minimal programming, extensive examples and guides, informative visualizations. 
 
 
 ```r
-install.packages("FFTrees")
-library("FFTrees")
-    a      
+# 3 Steps to getting started
+
+install.packages("FFTrees") # Install
+library("FFTrees")          # Load 
+FFTrees_guide()             # Open guide
+
+    0      
    / \     
-0   b  
+F   0  
      / \   
-    0   1  
- FFTrees v1.3.2
+    F   T  
+ FFTrees v1.3.3
 ```
 
 
@@ -170,7 +176,14 @@ library("FFTrees")
 ***=right
 
 
-<img src="images/FFTrees_Logo.jpg" title="plot of chunk unnamed-chunk-11" alt="plot of chunk unnamed-chunk-11" width="80%" style="display: block; margin: auto;" />
+<img src="images/FFTrees_Logo.jpg" title="plot of chunk unnamed-chunk-12" alt="plot of chunk unnamed-chunk-12" width="80%" style="display: block; margin: auto;" />
+
+
+
+---
+## Tutorial and Documentation
+
+<img src="images/FFTrees_Tutorial_SS.png" title="plot of chunk unnamed-chunk-13" alt="plot of chunk unnamed-chunk-13" width="90%" style="display: block; margin: auto;" />
 
 
 ---
@@ -204,10 +217,10 @@ install.packages("FFTrees")
 library("FFTrees")
 
 # Step 2: Create FFTs
-heart.fft <- FFTrees(formula = diagnosis ~.,
-                     data = heart.train,
-                     data.test = heart.test,
-                     main = "Heart Disease",
+heart.fft <- FFTrees(formula = diagnosis ~.,  # Formula
+                     data = heart.train,      # Training data
+                     data.test = heart.test,  # Test data
+                     main = "Heart Disease",  # Optional labels
                      decision.labels = c("Low-Risk", "High-Risk"))
 ```
 
@@ -273,7 +286,7 @@ inwords(heart.fft)
 plot(heart.fft, stats = FALSE, data = "test")
 ```
 
-<img src="figure/unnamed-chunk-18-1.png" title="plot of chunk unnamed-chunk-18" alt="plot of chunk unnamed-chunk-18" width="60%" style="display: block; margin: auto;" />
+<img src="figure/unnamed-chunk-20-1.png" title="plot of chunk unnamed-chunk-20" alt="plot of chunk unnamed-chunk-20" width="60%" style="display: block; margin: auto;" />
 
 
 ---
@@ -283,11 +296,11 @@ plot(heart.fft, stats = FALSE, data = "test")
 plot(heart.fft, data = "test")  # Training data
 ```
 
-<img src="figure/unnamed-chunk-19-1.png" title="plot of chunk unnamed-chunk-19" alt="plot of chunk unnamed-chunk-19" width="55%" style="display: block; margin: auto;" />
+<img src="figure/unnamed-chunk-21-1.png" title="plot of chunk unnamed-chunk-21" alt="plot of chunk unnamed-chunk-21" width="55%" style="display: block; margin: auto;" />
 
 ---
 
-<img src="images/roc.png" title="plot of chunk unnamed-chunk-20" alt="plot of chunk unnamed-chunk-20" width="80%" style="display: block; margin: auto;" />
+<img src="images/roc.png" title="plot of chunk unnamed-chunk-22" alt="plot of chunk unnamed-chunk-22" width="80%" style="display: block; margin: auto;" />
 
 ---
 
@@ -296,7 +309,7 @@ plot(heart.fft, data = "test")  # Training data
 plot(heart.fft, data = "test", tree = 6)   # Testing data, tree 6
 ```
 
-<img src="figure/unnamed-chunk-21-1.png" title="plot of chunk unnamed-chunk-21" alt="plot of chunk unnamed-chunk-21" width="55%" style="display: block; margin: auto;" />
+<img src="figure/unnamed-chunk-23-1.png" title="plot of chunk unnamed-chunk-23" alt="plot of chunk unnamed-chunk-23" width="55%" style="display: block; margin: auto;" />
 
 
 ---
@@ -306,9 +319,13 @@ plot(heart.fft, data = "test", tree = 6)   # Testing data, tree 6
 plot(heart.fft, data = "test", tree = 7)   # Testing data, tree 7
 ```
 
-<img src="figure/unnamed-chunk-22-1.png" title="plot of chunk unnamed-chunk-22" alt="plot of chunk unnamed-chunk-22" width="55%" style="display: block; margin: auto;" />
+<img src="figure/unnamed-chunk-24-1.png" title="plot of chunk unnamed-chunk-24" alt="plot of chunk unnamed-chunk-24" width="55%" style="display: block; margin: auto;" />
 
 
+
+---
+
+<q>How well can simple FFTs compete with classical rational models and cutting-edge machine learning algorithms?</q>
 
 
 ---&twocol
@@ -319,179 +336,166 @@ plot(heart.fft, data = "test", tree = 7)   # Testing data, tree 7
 
 
 - 10 datasets from the UCI Machine Learning Database.
-- 50\% Training, 50\% Testing
-- FFtrees vs rpart, regression, random forests...
+- 50% Training, 50% Testing
+- FFTrees vs rpart, regression, random forests...
 - Criterion: Balanced accuracy
     - `mean(sensitivity, specificity)`
 
 ***=right
 
-<img src="images/datacollage.png" title="plot of chunk unnamed-chunk-23" alt="plot of chunk unnamed-chunk-23" width="90%" style="display: block; margin: auto;" />
+<img src="images/datacollage.png" title="plot of chunk unnamed-chunk-25" alt="plot of chunk unnamed-chunk-25" width="90%" style="display: block; margin: auto;" />
 
-
-
-
-
-
---- .class #id 
-## Speed and frugality
-
-
-<img src="figure/unnamed-chunk-24-1.png" title="plot of chunk unnamed-chunk-24" alt="plot of chunk unnamed-chunk-24" width="60%" style="display: block; margin: auto;" />
-
-
---- .class #id 
-## Speed and frugality
-
-
-<img src="figure/unnamed-chunk-25-1.png" title="plot of chunk unnamed-chunk-25" alt="plot of chunk unnamed-chunk-25" width="60%" style="display: block; margin: auto;" />
-
-
-
-
-
---- .class #id 
-## Training Balanced Accuracy (all datasets)
-
-<img src="figure/unnamed-chunk-26-1.png" title="plot of chunk unnamed-chunk-26" alt="plot of chunk unnamed-chunk-26" width="80%" style="display: block; margin: auto;" />
-
-
---- .class #id 
-## Testing Balanced Accuracy (all datasets)
-
-<img src="figure/unnamed-chunk-27-1.png" title="plot of chunk unnamed-chunk-27" alt="plot of chunk unnamed-chunk-27" width="80%" style="display: block; margin: auto;" />
-
-
-
---- .class #id 
-
-<img src="images/MLR_Simulation_Trees.jpg" title="plot of chunk unnamed-chunk-28" alt="plot of chunk unnamed-chunk-28" width="72%" style="display: block; margin: auto;" />
 
 
 
 ---
+<img src="figure/unnamed-chunk-26-1.png" title="plot of chunk unnamed-chunk-26" alt="plot of chunk unnamed-chunk-26" width="60%" style="display: block; margin: auto;" />
+
+
+
+---
+<img src="figure/unnamed-chunk-27-1.png" title="plot of chunk unnamed-chunk-27" alt="plot of chunk unnamed-chunk-27" width="60%" style="display: block; margin: auto;" />
+
+
+---
+<img src="figure/unnamed-chunk-28-1.png" title="plot of chunk unnamed-chunk-28" alt="plot of chunk unnamed-chunk-28" width="60%" style="display: block; margin: auto;" />
+
+
+
+---
+
 <img src="figure/unnamed-chunk-29-1.png" title="plot of chunk unnamed-chunk-29" alt="plot of chunk unnamed-chunk-29" width="60%" style="display: block; margin: auto;" />
 
-
-
 ---
+
 <img src="figure/unnamed-chunk-30-1.png" title="plot of chunk unnamed-chunk-30" alt="plot of chunk unnamed-chunk-30" width="60%" style="display: block; margin: auto;" />
 
 
 ---
+
 <img src="figure/unnamed-chunk-31-1.png" title="plot of chunk unnamed-chunk-31" alt="plot of chunk unnamed-chunk-31" width="60%" style="display: block; margin: auto;" />
 
 
+
+--- .class #id 
+## Speed and frugality
+
+
+<img src="figure/unnamed-chunk-32-1.png" title="plot of chunk unnamed-chunk-32" alt="plot of chunk unnamed-chunk-32" width="60%" style="display: block; margin: auto;" />
+
+
+--- .class #id 
+## Speed and frugality
+
+
+<img src="figure/unnamed-chunk-33-1.png" title="plot of chunk unnamed-chunk-33" alt="plot of chunk unnamed-chunk-33" width="60%" style="display: block; margin: auto;" />
+
+
+
+
+
+--- .class #id 
+## Fitting Accuracy
+
+<img src="figure/unnamed-chunk-34-1.png" title="plot of chunk unnamed-chunk-34" alt="plot of chunk unnamed-chunk-34" width="80%" style="display: block; margin: auto;" />
+
+
+--- .class #id 
+## Prediction Accuracy
+
+<img src="figure/unnamed-chunk-35-1.png" title="plot of chunk unnamed-chunk-35" alt="plot of chunk unnamed-chunk-35" width="80%" style="display: block; margin: auto;" />
+
+
+
+--- .class #id 
+
+<img src="images/MLR_Simulation_Trees.jpg" title="plot of chunk unnamed-chunk-36" alt="plot of chunk unnamed-chunk-36" width="72%" style="display: block; margin: auto;" />
+
+
+
+
+
+
+
+
+<!-- ---&twocol -->
+
+<!-- ***=left -->
+<!-- ## Define an FFT manually -->
+
+<!-- ```{r, eval = FALSE, message = FALSE} -->
+<!-- # Create an FFT manually -->
+<!-- FFTrees(formula = diagnosis ~., -->
+<!-- data = heart.train, -->
+<!-- my.tree = "If chol > 350, predict True.  -->
+<!--            If cp != {a}, predict False.  -->
+<!--            If age <= 35, predict False. -->
+<!--            Otherwise, predict True") -->
+<!-- ``` -->
+
+
+<!-- ```{r, echo = FALSE} -->
+<!-- # Create an FFT manually -->
+<!-- my.heart.fft <- FFTrees(formula = diagnosis ~., -->
+<!--         data = heart.train, -->
+<!--         my.tree = "If chol > 350, predict True.  -->
+<!--                    If cp != {a}, predict False.  -->
+<!--                    If age <= 35, predict False. -->
+<!--                    Otherwise, predict True") -->
+<!-- ``` -->
+
+<!-- ***=right -->
+
+<!-- ```{r, out.width = "100%", echo = FALSE} -->
+<!-- plot(my.heart.fft, stats = TRUE) -->
+<!-- ``` -->
+
+
+
 ---
+## ShinyFFTrees
 
-### Additional features
+- A point-and click (no programming), web-based version of FFTrees with around 90% of the funcionality of FFTrees
+- Demo: http://econpsychbasel.shinyapps.io/ShinyFFTrees/
 
-<img src="images/FFTrees_Tutorial_SS.png" title="plot of chunk unnamed-chunk-32" alt="plot of chunk unnamed-chunk-32" width="90%" style="display: block; margin: auto;" />
-
-
-
-
+<img src="images/shinyfftrees_ss.png" title="plot of chunk unnamed-chunk-37" alt="plot of chunk unnamed-chunk-37" width="60%" style="display: block; margin: auto;" />
 
 
----&twocol
-
-***=left
-### Define an FFT manually
-
-
-```r
-# Create an FFT manually
-FFTrees(formula = diagnosis ~.,
-data = heart.train,
-my.tree = "If chol > 350, predict True. 
-           If cp != {a}, predict False. 
-           If age <= 35, predict False.
-           Otherwise, predict True")
-```
-
-
-
-
-***=right
-
-<img src="figure/unnamed-chunk-35-1.png" title="plot of chunk unnamed-chunk-35" alt="plot of chunk unnamed-chunk-35" width="100%" style="display: block; margin: auto;" />
-
-
-
----&twocol
-### Include cue costs
-
-***=left
-
-
-<img src="figure/unnamed-chunk-36-1.png" title="plot of chunk unnamed-chunk-36" alt="plot of chunk unnamed-chunk-36" width="100%" style="display: block; margin: auto;" />
-
-
-```r
-FFTrees(formula = diagnosis ~.,
- data = heart.train)
-```
-
-
-***=right
-
-
----&twocol
-### Include cue costs
-
-***=left
-
-
-<img src="figure/unnamed-chunk-38-1.png" title="plot of chunk unnamed-chunk-38" alt="plot of chunk unnamed-chunk-38" width="100%" style="display: block; margin: auto;" />
-
-
-```r
-FFTrees(formula = diagnosis ~.,
- data = heart.train)
-```
-
-
-***=right
-
-**Original FFT**: Cost = $120, Accuracy = 80%
-
-<img src="figure/unnamed-chunk-40-1.png" title="plot of chunk unnamed-chunk-40" alt="plot of chunk unnamed-chunk-40" width="100%" style="display: block; margin: auto;" />
-
-
----&twocol
-### Include cue costs
-
-***=left
-
-
-<img src="figure/unnamed-chunk-41-1.png" title="plot of chunk unnamed-chunk-41" alt="plot of chunk unnamed-chunk-41" width="100%" style="display: block; margin: auto;" />
-
-
-
-```r
-FFTrees(formula, data,
- cost.cues = heart.cost,
- cost.outcomes = c(0, 200, 100, 0))
-```
-
-
-***=right
-
-
-
-**Cheap FFT**: Cost = $1.56, Accuracy = 75%
-
-<img src="figure/unnamed-chunk-44-1.png" title="plot of chunk unnamed-chunk-44" alt="plot of chunk unnamed-chunk-44" width="100%" style="display: block; margin: auto;" />
 
 
 ---
 
-<q>When should I consider an FFT?</q>
+<img src="figure/unnamed-chunk-38-1.png" title="plot of chunk unnamed-chunk-38" alt="plot of chunk unnamed-chunk-38" width="90%" style="display: block; margin: auto;" />
 
---- .nobackground
-### When should I consider an FFT?
 
-<img src="images/considerFFT.jpg" title="plot of chunk unnamed-chunk-45" alt="plot of chunk unnamed-chunk-45" width="70%" style="display: block; margin: auto;" />
+
+
+---
+
+<img src="figure/unnamed-chunk-39-1.png" title="plot of chunk unnamed-chunk-39" alt="plot of chunk unnamed-chunk-39" width="90%" style="display: block; margin: auto;" />
+
+
+---
+
+<img src="figure/unnamed-chunk-40-1.png" title="plot of chunk unnamed-chunk-40" alt="plot of chunk unnamed-chunk-40" width="90%" style="display: block; margin: auto;" />
+
+
+
+
+
+
+---
+
+<img src="figure/unnamed-chunk-41-1.png" title="plot of chunk unnamed-chunk-41" alt="plot of chunk unnamed-chunk-41" width="90%" style="display: block; margin: auto;" />
+
+
+
+---
+
+<img src="figure/unnamed-chunk-42-1.png" title="plot of chunk unnamed-chunk-42" alt="plot of chunk unnamed-chunk-42" width="90%" style="display: block; margin: auto;" />
+
+
+
 
 
 
@@ -500,19 +504,17 @@ FFTrees(formula, data,
 
 ***=left
 
-### Publication
 
-FFTrees: A toolbox to create, visualize and evaluate fast-and-frugal decision trees. (in press). *Judgment and Decision Making*.
+FFTrees: A toolbox to create, visualize and evaluate fast-and-frugal decision trees. (2017). *Judgment and Decision Making*, 12(4), 344-368.
 
-### Collaborators
+<img src="images/manuscriptss.png" title="plot of chunk unnamed-chunk-43" alt="plot of chunk unnamed-chunk-43" width="90%" style="display: block; margin: auto;" />
 
-- Wolfgang Gaissmaier (University of Konstanz)
-- Hansjoerg Neth  (University of Konstanz)
-- Jan Woike  (MPI for Human Development)
 
 ***=right
 
-<img src="images/collaborators.png" title="plot of chunk unnamed-chunk-46" alt="plot of chunk unnamed-chunk-46" width="90%" style="display: block; margin: auto;" />
+
+
+<img src="images/fftreescoauthors.png" title="plot of chunk unnamed-chunk-44" alt="plot of chunk unnamed-chunk-44" width="100%" style="display: block; margin: auto;" />
 
 
 
@@ -520,7 +522,7 @@ FFTrees: A toolbox to create, visualize and evaluate fast-and-frugal decision tr
 --- .class #id 
 
 
-<img src="images/FFTrees_Logo.jpg" title="plot of chunk unnamed-chunk-47" alt="plot of chunk unnamed-chunk-47" width="30%" style="display: block; margin: auto;" />
+<img src="images/FFTrees_Logo.jpg" title="plot of chunk unnamed-chunk-45" alt="plot of chunk unnamed-chunk-45" width="30%" style="display: block; margin: auto;" />
 
 
 
@@ -531,10 +533,10 @@ library("FFTrees")            # Load FFTrees
 FFTrees_guide()               # Open the main package guide
 ```
 
-
+- Manuscript: FFTrees: A toolbox to create, visualize and evaluate fast-and-frugal decision trees. *Judgment and Decision Making*
+- This presentation: [https://ndphillips.github.io/spudm2017haifa/](https://ndphillips.github.io/spudm2017haifa/)
 - Github Repository: [http://www.github.com/ndphillips/FFTrees](http://www.github.com/ndphillips/FFTrees)
-- This presentation: [https://ndphillips.github.io/useR2017_pres/](https://ndphillips.github.io/useR2017_pres/)
-- Website: [https://ndphillips.github.io](https://ndphillips.github.io)
+- ShinyFFTrees: [http://econpsychbasel.shinyapps.io/ShinyFFTrees/](http://econpsychbasel.shinyapps.io/ShinyFFTrees/)
 - Email: Nathaniel.D.Phillips.is@gmail.com
 
 
@@ -549,7 +551,7 @@ FFTrees_guide()               # Open the main package guide
 
 - Many cues, weak validity, ind errors
 
-<img src="figure/unnamed-chunk-49-1.png" title="plot of chunk unnamed-chunk-49" alt="plot of chunk unnamed-chunk-49" width="100%" style="display: block; margin: auto;" />
+<img src="figure/unnamed-chunk-47-1.png" title="plot of chunk unnamed-chunk-47" alt="plot of chunk unnamed-chunk-47" width="100%" style="display: block; margin: auto;" />
 
 
 ***=right
@@ -558,7 +560,7 @@ FFTrees_guide()               # Open the main package guide
 
 - Few cues with high validity, dep errors.
 
-<img src="figure/unnamed-chunk-50-1.png" title="plot of chunk unnamed-chunk-50" alt="plot of chunk unnamed-chunk-50" width="100%" style="display: block; margin: auto;" />
+<img src="figure/unnamed-chunk-48-1.png" title="plot of chunk unnamed-chunk-48" alt="plot of chunk unnamed-chunk-48" width="100%" style="display: block; margin: auto;" />
 
 
 
@@ -569,7 +571,7 @@ FFTrees_guide()               # Open the main package guide
 plot(heart.fft, what = "cues")
 ```
 
-<img src="figure/unnamed-chunk-51-1.png" title="plot of chunk unnamed-chunk-51" alt="plot of chunk unnamed-chunk-51" width="60%" style="display: block; margin: auto;" />
+<img src="figure/unnamed-chunk-49-1.png" title="plot of chunk unnamed-chunk-49" alt="plot of chunk unnamed-chunk-49" width="60%" style="display: block; margin: auto;" />
 
 
 ---
@@ -577,7 +579,7 @@ plot(heart.fft, what = "cues")
 
 - As calculated by `randomForest`
 
-<img src="figure/unnamed-chunk-52-1.png" title="plot of chunk unnamed-chunk-52" alt="plot of chunk unnamed-chunk-52" width="80%" style="display: block; margin: auto;" />
+<img src="figure/unnamed-chunk-50-1.png" title="plot of chunk unnamed-chunk-50" alt="plot of chunk unnamed-chunk-50" width="80%" style="display: block; margin: auto;" />
 
 
 
@@ -597,44 +599,13 @@ plot(heart.fft, what = "cues")
 
 ***=right
 
-<img src="figure/unnamed-chunk-53-1.png" title="plot of chunk unnamed-chunk-53" alt="plot of chunk unnamed-chunk-53" width="80%" style="display: block; margin: auto;" />
+<img src="figure/unnamed-chunk-51-1.png" title="plot of chunk unnamed-chunk-51" alt="plot of chunk unnamed-chunk-51" width="80%" style="display: block; margin: auto;" />
 
 
-<img src="images/roc.jpg" title="plot of chunk unnamed-chunk-54" alt="plot of chunk unnamed-chunk-54" width="70%" style="display: block; margin: auto;" />
-
-
-
+<img src="images/roc.jpg" title="plot of chunk unnamed-chunk-52" alt="plot of chunk unnamed-chunk-52" width="70%" style="display: block; margin: auto;" />
 
 
 
----
-### Conclusion
-
-
-
-<img src="figure/unnamed-chunk-55-1.png" title="plot of chunk unnamed-chunk-55" alt="plot of chunk unnamed-chunk-55" width="90%" style="display: block; margin: auto;" />
-
-
---- .class #id 
-
-### Conclusion
-
-
-
-<img src="figure/unnamed-chunk-56-1.png" title="plot of chunk unnamed-chunk-56" alt="plot of chunk unnamed-chunk-56" width="90%" style="display: block; margin: auto;" />
-
-
-
-
-
-
---- .class #id 
-
-### Conclusion
-
-
-
-<img src="figure/unnamed-chunk-57-1.png" title="plot of chunk unnamed-chunk-57" alt="plot of chunk unnamed-chunk-57" width="90%" style="display: block; margin: auto;" />
 
 
 
@@ -643,7 +614,7 @@ plot(heart.fft, what = "cues")
 
 
 
-<img src="figure/unnamed-chunk-58-1.png" title="plot of chunk unnamed-chunk-58" alt="plot of chunk unnamed-chunk-58" width="90%" style="display: block; margin: auto;" />
+<img src="figure/unnamed-chunk-53-1.png" title="plot of chunk unnamed-chunk-53" alt="plot of chunk unnamed-chunk-53" width="90%" style="display: block; margin: auto;" />
 
 
 
@@ -653,25 +624,8 @@ plot(heart.fft, what = "cues")
 
 
 
-<img src="figure/unnamed-chunk-59-1.png" title="plot of chunk unnamed-chunk-59" alt="plot of chunk unnamed-chunk-59" width="90%" style="display: block; margin: auto;" />
+<img src="figure/unnamed-chunk-54-1.png" title="plot of chunk unnamed-chunk-54" alt="plot of chunk unnamed-chunk-54" width="90%" style="display: block; margin: auto;" />
 
-
-
----
-### Forest Fires (Training)
-
-<img src="figure/unnamed-chunk-60-1.png" title="plot of chunk unnamed-chunk-60" alt="plot of chunk unnamed-chunk-60" width="55%" style="display: block; margin: auto;" />
-
----
-### Forest Fires (Testing)
-
-<img src="figure/unnamed-chunk-61-1.png" title="plot of chunk unnamed-chunk-61" alt="plot of chunk unnamed-chunk-61" width="55%" style="display: block; margin: auto;" />
-
-
----
-### Forest Fires (Testing)
-
-<img src="figure/unnamed-chunk-62-1.png" title="plot of chunk unnamed-chunk-62" alt="plot of chunk unnamed-chunk-62" width="55%" style="display: block; margin: auto;" />
 
 
 
@@ -702,7 +656,7 @@ library("FFTrees")
 ***=right
 
 
-<img src="figure/unnamed-chunk-64-1.png" title="plot of chunk unnamed-chunk-64" alt="plot of chunk unnamed-chunk-64" width="80%" style="display: block; margin: auto;" />
+<img src="figure/unnamed-chunk-56-1.png" title="plot of chunk unnamed-chunk-56" alt="plot of chunk unnamed-chunk-56" width="80%" style="display: block; margin: auto;" />
 
 
 
@@ -715,7 +669,7 @@ heart.fff <- FFForest(formula = diagnosis ~., data = heartdisease)
 ```
 
 
-<img src="figure/unnamed-chunk-66-1.png" title="plot of chunk unnamed-chunk-66" alt="plot of chunk unnamed-chunk-66" width="90%" style="display: block; margin: auto;" />
+<img src="figure/unnamed-chunk-58-1.png" title="plot of chunk unnamed-chunk-58" alt="plot of chunk unnamed-chunk-58" width="90%" style="display: block; margin: auto;" />
 
 
 
