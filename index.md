@@ -283,7 +283,9 @@ inwords(heart.fft)
 plot(heart.fft, stats = FALSE, data = "test")
 ```
 
-<img src="assets/fig/unnamed-chunk-20-1.png" title="plot of chunk unnamed-chunk-20" alt="plot of chunk unnamed-chunk-20" width="60%" style="display: block; margin: auto;" />
+```
+## Error in plot(heart.fft, stats = FALSE, data = "test"): object 'heart.fft' not found
+```
 
 
 ---
@@ -293,7 +295,9 @@ plot(heart.fft, stats = FALSE, data = "test")
 plot(heart.fft, data = "test")  # Training data
 ```
 
-<img src="assets/fig/unnamed-chunk-21-1.png" title="plot of chunk unnamed-chunk-21" alt="plot of chunk unnamed-chunk-21" width="55%" style="display: block; margin: auto;" />
+```
+## Error in plot(heart.fft, data = "test"): object 'heart.fft' not found
+```
 
 ---
 
@@ -306,7 +310,9 @@ plot(heart.fft, data = "test")  # Training data
 plot(heart.fft, data = "test", tree = 6)   # Testing data, tree 6
 ```
 
-<img src="assets/fig/unnamed-chunk-23-1.png" title="plot of chunk unnamed-chunk-23" alt="plot of chunk unnamed-chunk-23" width="55%" style="display: block; margin: auto;" />
+```
+## Error in plot(heart.fft, data = "test", tree = 6): object 'heart.fft' not found
+```
 
 
 ---
@@ -316,7 +322,9 @@ plot(heart.fft, data = "test", tree = 6)   # Testing data, tree 6
 plot(heart.fft, data = "test", tree = 7)   # Testing data, tree 7
 ```
 
-<img src="assets/fig/unnamed-chunk-24-1.png" title="plot of chunk unnamed-chunk-24" alt="plot of chunk unnamed-chunk-24" width="55%" style="display: block; margin: auto;" />
+```
+## Error in plot(heart.fft, data = "test", tree = 7): object 'heart.fft' not found
+```
 
 
 
@@ -346,31 +354,52 @@ plot(heart.fft, data = "test", tree = 7)   # Testing data, tree 7
 
 
 ---
-<img src="assets/fig/unnamed-chunk-26-1.png" title="plot of chunk unnamed-chunk-26" alt="plot of chunk unnamed-chunk-26" width="60%" style="display: block; margin: auto;" />
 
-
-
----
-<img src="assets/fig/unnamed-chunk-27-1.png" title="plot of chunk unnamed-chunk-27" alt="plot of chunk unnamed-chunk-27" width="60%" style="display: block; margin: auto;" />
-
-
----
-<img src="assets/fig/unnamed-chunk-28-1.png" title="plot of chunk unnamed-chunk-28" alt="plot of chunk unnamed-chunk-28" width="60%" style="display: block; margin: auto;" />
+```
+## Error in plot(mushrooms.fft): object 'mushrooms.fft' not found
+```
 
 
 
 ---
 
-<img src="assets/fig/unnamed-chunk-29-1.png" title="plot of chunk unnamed-chunk-29" alt="plot of chunk unnamed-chunk-29" width="60%" style="display: block; margin: auto;" />
+```
+## Growing FFTs with ifan
+```
+
+```
+## Fitting non-FFTrees algorithms for comparison (you can turn this off with comp = FALSE) ...
+```
+
+<img src="assets/fig/unnamed-chunk-27-1.png" title="plot of chunk unnamed-chunk-27" alt="plot of chunk unnamed-chunk-27" width="60%" />
+
 
 ---
 
-<img src="assets/fig/unnamed-chunk-30-1.png" title="plot of chunk unnamed-chunk-30" alt="plot of chunk unnamed-chunk-30" width="60%" style="display: block; margin: auto;" />
+```
+## Growing FFTs with ifan
+```
+
+```
+## Fitting non-FFTrees algorithms for comparison (you can turn this off with comp = FALSE) ...
+```
+
+<img src="assets/fig/unnamed-chunk-28-1.png" title="plot of chunk unnamed-chunk-28" alt="plot of chunk unnamed-chunk-28" width="60%" />
+
 
 
 ---
 
-<img src="assets/fig/unnamed-chunk-31-1.png" title="plot of chunk unnamed-chunk-31" alt="plot of chunk unnamed-chunk-31" width="60%" style="display: block; margin: auto;" />
+<img src="assets/fig/unnamed-chunk-29-1.png" title="plot of chunk unnamed-chunk-29" alt="plot of chunk unnamed-chunk-29" width="60%" />
+
+---
+
+<img src="assets/fig/unnamed-chunk-30-1.png" title="plot of chunk unnamed-chunk-30" alt="plot of chunk unnamed-chunk-30" width="60%" />
+
+
+---
+
+<img src="assets/fig/unnamed-chunk-31-1.png" title="plot of chunk unnamed-chunk-31" alt="plot of chunk unnamed-chunk-31" width="60%" />
 
 
 
@@ -394,13 +423,27 @@ plot(heart.fft, data = "test", tree = 7)   # Testing data, tree 7
 --- .class #id 
 ## Fitting Accuracy
 
-<img src="assets/fig/unnamed-chunk-34-1.png" title="plot of chunk unnamed-chunk-34" alt="plot of chunk unnamed-chunk-34" width="80%" style="display: block; margin: auto;" />
+
+```
+## Error in subset(FFTrees.mlr.df, ((algorithm == "SVM" & task.id %in% c("arrhythmia", : object 'FFTrees.mlr.df' not found
+```
+
+```
+## Error in int_abline(a = a, b = b, h = h, v = v, untf = untf, ...): plot.new has not been called yet
+```
 
 
 --- .class #id 
 ## Prediction Accuracy
 
-<img src="assets/fig/unnamed-chunk-35-1.png" title="plot of chunk unnamed-chunk-35" alt="plot of chunk unnamed-chunk-35" width="80%" style="display: block; margin: auto;" />
+
+```
+## Error in subset(FFTrees.mlr.df, ((algorithm == "SVM" & task.id %in% c("arrhythmia", : object 'FFTrees.mlr.df' not found
+```
+
+```
+## Error in int_abline(a = a, b = b, h = h, v = v, untf = untf, ...): plot.new has not been called yet
+```
 
 
 
@@ -462,34 +505,34 @@ plot(heart.fft, data = "test", tree = 7)   # Testing data, tree 7
 
 ---
 
-<img src="assets/fig/unnamed-chunk-38-1.png" title="plot of chunk unnamed-chunk-38" alt="plot of chunk unnamed-chunk-38" width="90%" style="display: block; margin: auto;" />
+<img src="assets/fig/unnamed-chunk-38-1.png" title="plot of chunk unnamed-chunk-38" alt="plot of chunk unnamed-chunk-38" width="90%" />
 
 
 
 
 ---
 
-<img src="assets/fig/unnamed-chunk-39-1.png" title="plot of chunk unnamed-chunk-39" alt="plot of chunk unnamed-chunk-39" width="90%" style="display: block; margin: auto;" />
+<img src="assets/fig/unnamed-chunk-39-1.png" title="plot of chunk unnamed-chunk-39" alt="plot of chunk unnamed-chunk-39" width="90%" />
 
 
 ---
 
-<img src="assets/fig/unnamed-chunk-40-1.png" title="plot of chunk unnamed-chunk-40" alt="plot of chunk unnamed-chunk-40" width="90%" style="display: block; margin: auto;" />
+<img src="assets/fig/unnamed-chunk-40-1.png" title="plot of chunk unnamed-chunk-40" alt="plot of chunk unnamed-chunk-40" width="90%" />
 
 
 
-
-
-
----
-
-<img src="assets/fig/unnamed-chunk-41-1.png" title="plot of chunk unnamed-chunk-41" alt="plot of chunk unnamed-chunk-41" width="90%" style="display: block; margin: auto;" />
 
 
 
 ---
 
-<img src="assets/fig/unnamed-chunk-42-1.png" title="plot of chunk unnamed-chunk-42" alt="plot of chunk unnamed-chunk-42" width="90%" style="display: block; margin: auto;" />
+<img src="assets/fig/unnamed-chunk-41-1.png" title="plot of chunk unnamed-chunk-41" alt="plot of chunk unnamed-chunk-41" width="90%" />
+
+
+
+---
+
+<img src="assets/fig/unnamed-chunk-42-1.png" title="plot of chunk unnamed-chunk-42" alt="plot of chunk unnamed-chunk-42" width="90%" />
 
 
 
@@ -548,7 +591,7 @@ FFTrees_guide()               # Open the main package guide
 
 - Many cues, weak validity, ind errors
 
-<img src="assets/fig/unnamed-chunk-47-1.png" title="plot of chunk unnamed-chunk-47" alt="plot of chunk unnamed-chunk-47" width="100%" style="display: block; margin: auto;" />
+<img src="assets/fig/unnamed-chunk-47-1.png" title="plot of chunk unnamed-chunk-47" alt="plot of chunk unnamed-chunk-47" width="100%" />
 
 
 ***=right
@@ -557,7 +600,7 @@ FFTrees_guide()               # Open the main package guide
 
 - Few cues with high validity, dep errors.
 
-<img src="assets/fig/unnamed-chunk-48-1.png" title="plot of chunk unnamed-chunk-48" alt="plot of chunk unnamed-chunk-48" width="100%" style="display: block; margin: auto;" />
+<img src="assets/fig/unnamed-chunk-48-1.png" title="plot of chunk unnamed-chunk-48" alt="plot of chunk unnamed-chunk-48" width="100%" />
 
 
 
@@ -566,7 +609,22 @@ FFTrees_guide()               # Open the main package guide
 
 - As calculated by `randomForest`
 
-<img src="assets/fig/unnamed-chunk-49-1.png" title="plot of chunk unnamed-chunk-49" alt="plot of chunk unnamed-chunk-49" width="80%" style="display: block; margin: auto;" />
+
+```
+## Error in eval(expr, envir, enclos): object 'heart.fft' not found
+```
+
+```
+## Error in rownames(heart.fft$comp$rf$model$importance): object 'heart.fft' not found
+```
+
+```
+## Error in eval(expr, envir, enclos): object 'heart.importance' not found
+```
+
+```
+## Error in yarrr::pirateplot(formula = importance ~ cue, data = heart.importance, : object 'heart.importance' not found
+```
 
 
 
@@ -586,7 +644,7 @@ FFTrees_guide()               # Open the main package guide
 
 ***=right
 
-<img src="assets/fig/unnamed-chunk-50-1.png" title="plot of chunk unnamed-chunk-50" alt="plot of chunk unnamed-chunk-50" width="80%" style="display: block; margin: auto;" />
+<img src="assets/fig/unnamed-chunk-50-1.png" title="plot of chunk unnamed-chunk-50" alt="plot of chunk unnamed-chunk-50" width="80%" />
 
 
 <img src="images/roc.jpg" title="plot of chunk unnamed-chunk-51" alt="plot of chunk unnamed-chunk-51" width="70%" style="display: block; margin: auto;" />
@@ -601,7 +659,7 @@ FFTrees_guide()               # Open the main package guide
 
 
 
-<img src="assets/fig/unnamed-chunk-52-1.png" title="plot of chunk unnamed-chunk-52" alt="plot of chunk unnamed-chunk-52" width="90%" style="display: block; margin: auto;" />
+<img src="assets/fig/unnamed-chunk-52-1.png" title="plot of chunk unnamed-chunk-52" alt="plot of chunk unnamed-chunk-52" width="90%" />
 
 
 
@@ -611,7 +669,7 @@ FFTrees_guide()               # Open the main package guide
 
 
 
-<img src="assets/fig/unnamed-chunk-53-1.png" title="plot of chunk unnamed-chunk-53" alt="plot of chunk unnamed-chunk-53" width="90%" style="display: block; margin: auto;" />
+<img src="assets/fig/unnamed-chunk-53-1.png" title="plot of chunk unnamed-chunk-53" alt="plot of chunk unnamed-chunk-53" width="90%" />
 
 
 
@@ -643,7 +701,16 @@ library("FFTrees")
 ***=right
 
 
-<img src="assets/fig/unnamed-chunk-55-1.png" title="plot of chunk unnamed-chunk-55" alt="plot of chunk unnamed-chunk-55" width="80%" style="display: block; margin: auto;" />
+
+```
+## Growing FFTs with ifan
+```
+
+```
+## Fitting non-FFTrees algorithms for comparison (you can turn this off with comp = FALSE) ...
+```
+
+<img src="assets/fig/unnamed-chunk-55-1.png" title="plot of chunk unnamed-chunk-55" alt="plot of chunk unnamed-chunk-55" width="80%" />
 
 
 
