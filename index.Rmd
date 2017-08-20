@@ -962,13 +962,6 @@ text(0, 0, labels = "C")
 
 
 ---
-
-```{r, fig.align = 'center', echo = TRUE, out.width = "60%"}
-plot(heart.fft, what = "cues")
-```
-
-
----
 ## Cue importance
 
 - As calculated by `randomForest`
